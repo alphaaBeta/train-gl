@@ -4,8 +4,7 @@
 
 /.vs/gkom-gl/v15
 /Debug
-/gl_01/Debug
-/gl_02/Debug
-/gl_03/Debug
-/gl_04/Debug
 /gl_05/Debug
+/gl_05/Release
+*.db
+/.vs

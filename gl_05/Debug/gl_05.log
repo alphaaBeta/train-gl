@@ -1,1 +1,7 @@
-﻿
+﻿F:\apps\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(391,5): warning MSB8028: Katalog pośredni (Debug\) zawiera pliki udostępnione z innego projektu (gl_05.vcxproj). Może to spowodować niepoprawne zachowanie podczas oczyszczania i ponownej kompilacji.
+  gl_05.cpp
+  shprogram.cpp
+  Generowanie kodu...
+  Trwa generowanie kodu
+  Zakończono generowanie kodu
+  gl_05.vcxproj -> C:\Git\ZT3-Lokomotywa\Debug\Train.exe
