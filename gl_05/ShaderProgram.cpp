@@ -6,7 +6,7 @@ using namespace std;
 
 #define GLEW_STATIC
 #include <GL/glew.h>
-#include "shprogram.h"
+#include "ShaderProgram.h"
 
 string read_shader_code(const GLchar* shaderPath)
 {
@@ -69,3 +69,4 @@ ShaderProgram::ShaderProgram(const GLchar* vertexPath, const GLchar* fragmentPat
 	glDeleteShader(vertex_id);
 	glDeleteShader(fragment_id);
 }
+
