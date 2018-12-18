@@ -16,21 +16,14 @@
 
 class Game {
 private:
-	// Window related
+	// Window
 	GLFWwindow *_window;
 	const int W_WIDTH;
 	const int W_HEIGHT;
 	int _frameBuffWidth;
 	int _frameBuffHeight;
 
-	// OpenGL version
-	// ...
-
-	// Game loop related
-
-
-	// Mouse input
-	// ...
+	// Mouse
 	double _lastMouseX;
 	double _lastMouseY;
 	double _mouseX;
@@ -38,8 +31,12 @@ private:
 	double _mouseOffsetX;
 	double _mouseOffsetY;
 	bool _firstMouse;
+
 	// Camera
 	Camera _camera;
+	float _fov;
+	float _nearPlane;
+	float _farPlane;
 
 	// Matrixes
 	glm::mat4 _ViewMatrix;
@@ -48,30 +45,24 @@ private:
 	glm::vec3 _camFront;
 
 	glm::mat4 _ProjMatrix;
-	float _fov;
-	float _nearPlane;
-	float _farPlane;
 
 	// Shaders
 	ShaderProgram *_shader;
 
-	// Textures
+	// TODO:Textures
 
-	// Materials
-
-	// Models
+	// TODO:Models
 	Mesh *_mesh;
-	// Lights
 
-	// Private functions
+	// TODO: Lights
+
 	void initGLFW();
 	void initWindow(const char *title, bool resizable);
-	void initGLEW(); // use after context is created
+	void initGLEW();
 	void initOpenGLOptions();
 	void initMatrices();
 	void initShaders();
-	void initTextures();
-	//void initMaterials();
+	//void initTextures();
 	//void initModels();
 	//void initLights();
 	void initUniforms();

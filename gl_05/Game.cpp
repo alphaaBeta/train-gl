@@ -5,7 +5,7 @@ void Game::initUniforms() {
 	_shader->setMat4fv(_ProjMatrix, "ProjectionMatrix");
 }
 
-Game::Game(const char *title, const int width, const int height, bool resizable=false) : W_WIDTH(width), W_HEIGHT(height), _camera(glm::vec3(0.f, 0.f, 1.f), glm::vec3(0.f, 1.f, 0.f)) {
+Game::Game(const char *title, const int width, const int height, bool resizable = false) : W_WIDTH(width), W_HEIGHT(height), _camera(glm::vec3(0.f, 0.f, 1.f), glm::vec3(0.f, 1.f, 0.f)) {
 	_window = nullptr;
 	_frameBuffWidth = W_WIDTH;
 	_frameBuffHeight = W_HEIGHT;
@@ -18,29 +18,17 @@ Game::Game(const char *title, const int width, const int height, bool resizable=
 	_nearPlane = 0.1f;
 	_farPlane = 1000.f;
 
-
-	/*
-	Vertex vertices[] =
-{
-	//Position								//Color							//Texcoords					//Normals
-	glm::vec3(-0.5f, 0.5f, 0.f),			glm::vec3(1.f, 0.f, 0.f),		glm::vec2(0.f, 1.f),		glm::vec3(0.f, 0.f, -1.f),
-	glm::vec3(-0.5f, -0.5f, 0.f),			glm::vec3(0.f, 1.f, 0.f),		glm::vec2(0.f, 0.f),		glm::vec3(0.f, 0.f, -1.f),
-	glm::vec3(0.5f, -0.5f, 0.f),			glm::vec3(0.f, 0.f, 1.f),		glm::vec2(1.f, 0.f),		glm::vec3(0.f, 0.f, -1.f),
-	glm::vec3(0.5f, 0.5f, 0.f),				glm::vec3(1.f, 1.f, 0.f),		glm::vec2(1.f, 1.f),		glm::vec3(0.f, 0.f, -1.f)
-};
-	*/
-
 	std::vector<Vertex> verts = {
-		//Position								//Color					
-		{glm::vec3(-0.5f, 0.5f, 0.f),			glm::vec3(1.f, 0.f, 0.f)},
-	{glm::vec3(-0.5f, -0.5f, 0.f),			glm::vec3(0.f, 1.f, 0.f)},
-	{glm::vec3(0.5f, -0.5f, 0.f),			glm::vec3(0.f, 0.f, 1.f)},
-	{glm::vec3(0.5f, 0.5f, 0.f),				glm::vec3(1.f, 1.f, 0.f)}
+		// Pos							// Color
+		{ glm::vec3(-0.5f, 0.5f, 0.f),	glm::vec3(1.f, 0.f, 0.f) },
+		{ glm::vec3(-0.5f, -0.5f, 0.f),	glm::vec3(0.f, 1.f, 0.f) },
+		{ glm::vec3(0.5f, -0.5f, 0.f),	glm::vec3(0.f, 0.f, 1.f) },
+		{ glm::vec3(0.5f, 0.5f, 0.f),	glm::vec3(1.f, 1.f, 0.f) }
 	};
-	
+
 	std::vector<GLuint> inds = {
-		0, 1, 2, //triangle 1
-		0, 2, 3  //triangle 2
+		0, 1, 2, //trujkont 1
+		0, 2, 3  //trujkont 2 tworza kwadrat
 	};
 
 
@@ -52,7 +40,7 @@ Game::Game(const char *title, const int width, const int height, bool resizable=
 
 	initMatrices();
 	initShaders();
-	initTextures();
+	//initTextures();
 	//initMaterials();
 	//initModels();
 	//initLights();
@@ -216,7 +204,7 @@ void Game::initGLEW() {
 	}
 }
 
-void Game::initOpenGLOptions(){
+void Game::initOpenGLOptions() {
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
@@ -245,6 +233,6 @@ void Game::initShaders() {
 	_shader = new ShaderProgram("Shader.Vertex", "Shader.Fragment");
 }
 
-void Game::initTextures() {
-	return (void)1;
-}
+//void Game::initTextures() {
+//	return (void)1;
+//}

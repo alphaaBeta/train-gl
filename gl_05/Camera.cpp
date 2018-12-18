@@ -67,7 +67,7 @@ void Camera::move(const float &dt, const int direction) {
 void Camera::updateMouseInput(const float &dt, const double &offsetX, const double &offsetY) {
 	_pitch += offsetY * _sense * dt;
 	_yaw += offsetX * _sense * dt;
-	
+
 	if (_pitch > 80.f)
 		_pitch = 80.f;
 	else if (_pitch < -80.f)
