@@ -15,66 +15,66 @@
 #include "Mesh.h"
 
 class Game {
-private:
-	// Window
-	GLFWwindow *_window;
-	const int W_WIDTH;
-	const int W_HEIGHT;
-	int _frameBuffWidth;
-	int _frameBuffHeight;
+  private:
+    // Window
+    GLFWwindow *_window;
+    const int W_WIDTH;
+    const int W_HEIGHT;
+    int _frameBuffWidth;
+    int _frameBuffHeight;
 
-	// Mouse
-	double _lastMouseX;
-	double _lastMouseY;
-	double _mouseX;
-	double _mouseY;
-	double _mouseOffsetX;
-	double _mouseOffsetY;
-	bool _firstMouse;
+    // Mouse
+    double _lastMouseX;
+    double _lastMouseY;
+    double _mouseX;
+    double _mouseY;
+    double _mouseOffsetX;
+    double _mouseOffsetY;
+    bool _firstMouse;
 
-	// Camera
-	Camera _camera;
-	float _fov;
-	float _nearPlane;
-	float _farPlane;
+    // Camera
+    Camera _camera;
+    float _fov;
+    float _nearPlane;
+    float _farPlane;
 
-	// Matrixes
-	glm::mat4 _ViewMatrix;
-	glm::vec3 _camPos;
-	glm::vec3 _worldUp;
-	glm::vec3 _camFront;
+    // Matrixes
+    glm::mat4 _ViewMatrix;
+    glm::vec3 _camPos;
+    glm::vec3 _worldUp;
+    glm::vec3 _camFront;
 
-	glm::mat4 _ProjMatrix;
+    glm::mat4 _ProjMatrix;
 
-	// Shaders
-	ShaderProgram *_shader;
+    // Shaders
+    ShaderProgram *_shader;
 
-	// TODO:Textures
+    // TODO:Textures
 
-	// TODO:Models
-	Mesh *_mesh;
+    // TODO:Models
+    std::vector<Mesh *> _meshes;
 
-	// TODO: Lights
+    // TODO: Lights
 
-	void initGLFW();
-	void initWindow(const char *title, bool resizable);
-	void initGLEW();
-	void initOpenGLOptions();
-	void initMatrices();
-	void initShaders();
-	//void initTextures();
-	//void initModels();
-	//void initLights();
-	void initUniforms();
+    void initGLFW();
+    void initWindow(const char *title, bool resizable);
+    void initGLEW();
+    void initOpenGLOptions();
+    void initMatrices();
+    void initShaders();
+    //void initTextures();
+    //void initModels();
+    //void initLights();
+    void initUniforms();
 
-public:
-	Game(const char *title, const int width, const int height, bool resizable);
-	~Game();
-	void updateKeyInput(const float &dt);
-	void updateMouseInput();
-	int getWindowShouldClose();
-	void update(const float &dt);
-	void render();
-	void updateUniforms();
+  public:
+    Game(const char *title, const int width, const int height, bool resizable);
+    ~Game();
+    void updateKeyInput(const float &dt);
+    void updateMouseInput();
+    int getWindowShouldClose();
+    void update(const float &dt);
+    void render();
+    void updateUniforms();
 };
 
