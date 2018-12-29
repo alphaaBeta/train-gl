@@ -127,11 +127,11 @@ void Game::updateKeyInput(const float &dt) {
     if (glfwGetKey(_window, GLFW_KEY_D) == GLFW_PRESS) {
         _camera.move(dt, RIGHT);
     }
-    if (glfwGetKey(_window, GLFW_KEY_C) == GLFW_PRESS) {
-        _camPos.y -= 0.05f;
+    if (glfwGetKey(_window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS) {
+        _camera.move(dt, UP);
     }
-    if (glfwGetKey(_window, GLFW_KEY_SPACE) == GLFW_PRESS) {
-        _camPos.y += 0.05f;
+    if (glfwGetKey(_window, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS) {
+        _camera.move(dt, DOWN);
     }
 }
 
@@ -260,6 +260,7 @@ void Game::initOpenGLOptions() {
 
 void Game::initMatrices() {
     _ViewMatrix = glm::mat4(1.f);
+    // https://stackoverflow.com/questions/21830340/understanding-glmlookat
     _ViewMatrix = glm::lookAt(_camPos, _camPos + _camFront, _worldUp);
 
     _ProjMatrix = glm::mat4(1.f);

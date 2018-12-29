@@ -1,7 +1,19 @@
-﻿F:\apps\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(391,5): warning MSB8028: Katalog pośredni (Debug\) zawiera pliki udostępnione z innego projektu (gl_05.vcxproj). Może to spowodować niepoprawne zachowanie podczas oczyszczania i ponownej kompilacji.
-  gl_05.cpp
-  shprogram.cpp
-  Generowanie kodu...
-  Trwa generowanie kodu
-  Zakończono generowanie kodu
-  gl_05.vcxproj -> C:\Git\ZT3-Lokomotywa\Debug\Train.exe
+﻿  Camera.cpp
+c:\users\radek\source\repos\zt3-lokomotywa6\gl_05\camera.cpp(72): warning C4244: '+=': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\radek\source\repos\zt3-lokomotywa6\gl_05\camera.cpp(73): warning C4244: '+=': conversion from 'double' to 'GLfloat', possible loss of data
+  Game.cpp
+  Main.cpp
+  Generating Code...
+  LINK : /LTCG specified but no code generation required; remove /LTCG from the link command line to improve linker performance
+Mesh.obj : warning LNK4049: locally defined symbol ___glewActiveTexture imported
+Mesh.obj : warning LNK4049: locally defined symbol ___glewBindBuffer imported
+Mesh.obj : warning LNK4049: locally defined symbol ___glewBufferData imported
+Mesh.obj : warning LNK4049: locally defined symbol ___glewGenBuffers imported
+Mesh.obj : warning LNK4049: locally defined symbol ___glewEnableVertexAttribArray imported
+Mesh.obj : warning LNK4049: locally defined symbol ___glewGetUniformLocation imported
+Mesh.obj : warning LNK4049: locally defined symbol ___glewUniformMatrix4fv imported
+Mesh.obj : warning LNK4049: locally defined symbol ___glewUseProgram imported
+Mesh.obj : warning LNK4049: locally defined symbol ___glewVertexAttribPointer imported
+Mesh.obj : warning LNK4049: locally defined symbol ___glewBindVertexArray imported
+Mesh.obj : warning LNK4049: locally defined symbol ___glewGenVertexArrays imported
+  gl_05.vcxproj -> C:\Users\Radek\source\repos\ZT3-Lokomotywa6\Debug\Train.exe
