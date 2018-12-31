@@ -1,39 +1,82 @@
 #include "Camera.h"
-#include <glm/gtc/matrix_transform.inl>
-#include <GL/glew.h>
-#include "MainLoop.h"
-#include <glm/detail/type_mat.hpp>
+#include "Config.h"
 
+void Camera::updateCamVecs() {
+    _front.x = cos(glm::radians(_yaw)) * cos(glm::radians(_pitch));
+    _front.y = sin(glm::radians(_pitch));
+    _front.z = sin(glm::radians(_yaw)) * cos(glm::radians(_pitch));
 
-Camera::Camera(ShaderProgram &shader_program, glm::vec3 location, const float fov, const float aspectRatio, const float displayMin, const float displayMax)
-{	
-	//Dependency injection
-	_shaderProgram = &shader_program;
-
-	// Projection matrix : 45° Field of View, 4:3 ratio, display range : 0.1 unit <-> 100 units
-	_projection = glm::perspective(glm::radians(fov), aspectRatio, displayMin, displayMax);
-
-	// Or, for an ortho camera :
-	//_projection = glm::ortho(-10.0f,10.0f,-10.0f,10.0f,0.0f,100.0f); // In world coordinates
-
-	SetCameraView(location);
-
-	// Model matrix : an identity matrix (model will be at the origin)
-	glm::mat4 Model = glm::mat4();
-
-	// Our ModelViewProjection : multiplication of our 3 matrices
-	MVPMatrix = _projection * _view * Model;
-
-	// Get a handle for our "MVP" uniform
-	MatrixID = glGetUniformLocation(_shaderProgram->get_programID(), "MVP");
+    _front = glm::normalize(_front);
+    // cross() is vecA x vecB so result is prostopadly to A and B
+    _right = glm::normalize(glm::cross(_front, _worldUp));
+    _up = glm::normalize(glm::cross(_right, _front));
 }
 
-void Camera::SetCameraView(glm::vec3 location, glm::vec3 target, bool upsideDown)
-{
-	//Camera matrix
-	_view = glm::lookAt(
-		location, // Camera is at (x,y,z), in World Space
-		target, // and looks at the origin
-		glm::vec3(0, upsideDown ? -1 : 1, 0)  // Head is up (set to 0,-1,0 to look upside-down)
-	);
+Camera::Camera(glm::vec3 pos, glm::vec3 worldUp) {
+    _ViewMatrix = glm::mat4(1.f);
+
+    _moveSpeed = Config::CAMERA_SPEED;
+    _sense = Config::CAMERA_SENSITIVITY;
+
+    _worldUp = worldUp;
+    _pos = pos;
+    _right = glm::vec3(0.f);
+    _up = worldUp;
+
+    _pitch = 0.f;
+    _yaw = -90.f;
+    _roll = 0.f;
+
+    updateCamVecs();
+}
+
+Camera::~Camera() {
+}
+
+const glm::vec3 Camera::getPosition() const {
+    return _pos;
+}
+
+const glm::mat4 Camera::getViewMatrix() {
+    updateCamVecs();	// location    target     up
+    _ViewMatrix = glm::lookAt(_pos, _pos + _front, _up);
+    return _ViewMatrix;
+}
+
+void Camera::move(const float &dt, const int direction) {
+    switch (direction) {
+    case LEFT:
+        _pos -= _right * _moveSpeed * dt;
+        break;
+    case RIGHT:
+        _pos += _right * _moveSpeed * dt;
+        break;
+    case FORWARD:
+        _pos += _front * _moveSpeed * dt;
+        break;
+    case BACKWARD:
+        _pos -= _front * _moveSpeed * dt;
+        break;
+    case UP:
+        _pos += _worldUp * _moveSpeed * dt;
+        break;
+    case DOWN:
+        _pos -= _worldUp * _moveSpeed * dt;
+        break;
+    default:
+        break;
+    }
+}
+
+void Camera::updateMouseInput(const float &dt, const double &offsetX, const double &offsetY) {
+    _pitch += offsetY * _sense * dt;
+    _yaw += offsetX * _sense * dt;
+
+    if (_pitch > 80.f)
+        _pitch = 80.f;
+    else if (_pitch < -80.f)
+        _pitch = -80.f;
+
+    if (_yaw > 360.f || _yaw < -360.f)
+        _yaw = 0.f;
 }

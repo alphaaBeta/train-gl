@@ -1,12 +1,6 @@
-#include <string>
-#include <iostream>
-#include <fstream>
-#include <sstream>
-using namespace std;
-
-#define GLEW_STATIC
-#include <GL/glew.h>
 #include "ShaderProgram.h"
+
+using namespace std;
 
 string read_shader_code(const GLchar* shaderPath)
 {
