@@ -14,6 +14,8 @@
 #include "Camera.h"
 #include "Primitive.h"
 
+class Group;
+
 class Game {
   private:
     // Window
@@ -51,7 +53,7 @@ class Game {
 
     // TODO:Textures
 
-    // TODO:Models
+    // Models
     std::vector<Model *> _objects;
 
     // TODO: Lights
@@ -63,7 +65,7 @@ class Game {
     void initMatrices();
     void initShaders();
     //void initTextures();
-    //void initModels();
+    void initModels(Group &root);
     //void initLights();
     void initUniforms();
 
