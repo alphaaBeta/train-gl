@@ -12,7 +12,7 @@
 #include "ShaderProgram.h"
 #include "Texture.h"
 #include "Camera.h"
-#include "Mesh.h"
+#include "Primitive.h"
 
 class Game {
   private:
@@ -52,7 +52,7 @@ class Game {
     // TODO:Textures
 
     // TODO:Models
-    std::vector<Mesh *> _meshes;
+    std::vector<Model *> _objects;
 
     // TODO: Lights
 

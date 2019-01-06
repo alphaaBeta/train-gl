@@ -2,6 +2,8 @@
 
 using namespace std;
 
+const ShaderProgram* ShaderProgram::usedProgram = nullptr;
+
 string read_shader_code(const GLchar* shaderPath)
 {
 	ifstream shader_file;

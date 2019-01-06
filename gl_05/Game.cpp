@@ -46,7 +46,6 @@ Game::Game(const char *title, const int width, const int height, bool resizable 
     };
 
 
-    // _meshes.push_back(new Mesh(verts, inds));
 
     std::vector<Vertex> verts2 = {
         // Pos							// Color
@@ -58,13 +57,6 @@ Game::Game(const char *title, const int width, const int height, bool resizable 
     std::vector<GLuint> inds2 = {
         0, 1, 2, //trujkont 1
     };
-
-    //_meshes.push_back(new Mesh(verts2,
-    //                           inds2,
-    //                           glm::vec3(1.0f, 0.f, 0.f)
-    //                           ,glm::vec3(1.0f, 0.f, 0.f)
-    //                          )
-    //                 );
 
 
 
@@ -94,7 +86,7 @@ Game::Game(const char *title, const int width, const int height, bool resizable 
 
     std::vector<GLuint> indices;
 
-    _meshes.push_back(new Mesh(vertices, indices));
+    _objects.push_back(new Primitive(vertices, indices));
 }
 
 Game::~Game() {
@@ -103,7 +95,7 @@ Game::~Game() {
 
     delete _shader;
 
-    for (const auto &i : _meshes)
+    for (const auto &i : _objects)
         delete i;
 
 }
@@ -160,7 +152,7 @@ int Game::getWindowShouldClose() {
 void Game::update(const float &dt) {
     glfwPollEvents();
 
-    for (const auto &i : _meshes) {
+    for (const auto &i : _objects) {
         i->rotate(glm::vec3(0.0f, 0.1f, 0.0f));
     }
 
@@ -177,8 +169,8 @@ void Game::render() {
     updateUniforms();
 
     //Render models
-    for (const auto &i : _meshes) {
-        i->render(_shader);
+    for (const auto &i : _objects) {
+        i->render();
     }
 
     //End Draw
@@ -274,6 +266,7 @@ void Game::initMatrices() {
 
 void Game::initShaders() {
     _shader = new ShaderProgram("Shader.Vertex", "Shader.Fragment");
+	_shader->Use();
 }
 
 //void Game::initTextures() {
