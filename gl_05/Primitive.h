@@ -39,9 +39,10 @@ class Primitive : public Model{
          glm::vec3 origin = glm::vec3(0.f),
          glm::vec3 rotation = glm::vec3(0.f),
          glm::vec3 scale = glm::vec3(1.f));
+	Primitive();
 
     ~Primitive();
-    void draw() override;
+    void draw();
 
     void setPos(const glm::vec3 pos);
     void move(const glm::vec3 pos);

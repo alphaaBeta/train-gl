@@ -51,6 +51,10 @@ Primitive::Primitive(
     updateModelMatrix();
 }
 
+Primitive::Primitive()
+{
+	
+}
 
 
 Primitive::~Primitive() {
