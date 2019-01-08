@@ -8,10 +8,10 @@ void Model::render()
 	updateModelMatrix();
 
 	glm::mat4 oldMM = _GlobalModelMatrix;
+
+	//GlobalModelMatrix will be used to render all the model's childrens and model
 	_GlobalModelMatrix *= _ModelMatrix;
-
 	draw();
-
 	_GlobalModelMatrix = oldMM;
 }
 

@@ -8,12 +8,14 @@ class ShaderProgram;
 class Model
 {
 public:
+	//Default transformation values
 	glm::vec3 _pos = glm::vec3(0.f);
 	glm::vec3 _origin = glm::vec3(0.f);
 	glm::vec3 _rotation = glm::vec3(0.f);
 	glm::vec3 _scale = glm::vec3(1.f);
 
 	glm::mat4 _ModelMatrix;
+	//Global MM is just a way to transport ModelMatrix down the model's children (in case of groups)
 	static glm::mat4 _GlobalModelMatrix;
 
 	virtual void draw() {};

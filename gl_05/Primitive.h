@@ -22,11 +22,7 @@ class Primitive : public Model{
     void initVAO();
   public:
     Primitive(std::vector<Vertex> &vertices,
-         const std::vector<GLuint> &indices,
-         glm::vec3 position = glm::vec3(0.f),
-         glm::vec3 origin = glm::vec3(0.f),
-         glm::vec3 rotation = glm::vec3(0.f),
-         glm::vec3 scale = glm::vec3(1.f));
+         const std::vector<GLuint> &indices);
 	Primitive();
     ~Primitive();
 

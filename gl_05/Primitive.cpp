@@ -33,17 +33,8 @@ void Primitive::initVAO() {
 
 Primitive::Primitive(
     std::vector<Vertex> &vertices,
-    const std::vector<GLuint> &indices,
-    glm::vec3 position,
-    glm::vec3 origin,
-    glm::vec3 rotation,
-    glm::vec3 scale) {
-    _pos = position;
-    _origin = origin;
-    _rotation = rotation;
-    _scale = scale;
-
-
+    const std::vector<GLuint> &indices) 
+{
     _vertices = vertices;
     _indices = indices;
 
