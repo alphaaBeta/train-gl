@@ -63,7 +63,7 @@ Primitive::~Primitive() {
 void Primitive::draw() {
 	const ShaderProgram* shader = ShaderProgram::usedProgram;
     //updateModelMatrix();
-    shader->setMat4fv(_ModelMatrix, "ModelMatrix");
+    shader->setMat4fv(_GlobalModelMatrix, "ModelMatrix");
     shader->Use();
 
     glBindVertexArray(_vao);

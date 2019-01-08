@@ -1,13 +1,21 @@
 #include "Model.h"
 #include <glm/gtc/matrix_transform.inl>
 
+glm::mat4 Model::_GlobalModelMatrix = glm::mat4(1.f);
 
 void Model::render()
 {
 	updateModelMatrix();
 
+	glm::mat4 oldMM = _GlobalModelMatrix;
+	_GlobalModelMatrix *= _ModelMatrix;
+
 	draw();
+
+	_GlobalModelMatrix = oldMM;
 }
+
+
 
 void Model::updateModelMatrix() {
 	_ModelMatrix = glm::mat4(1.f);

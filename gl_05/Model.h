@@ -8,17 +8,19 @@ class ShaderProgram;
 class Model
 {
 public:
-	glm::vec3 _pos;
-	glm::vec3 _origin;
-	glm::vec3 _rotation;
-	glm::vec3 _scale;
+	glm::vec3 _pos = glm::vec3(0.f);
+	glm::vec3 _origin = glm::vec3(0.f);
+	glm::vec3 _rotation = glm::vec3(0.f);
+	glm::vec3 _scale = glm::vec3(1.f);
 
 	glm::mat4 _ModelMatrix;
+	static glm::mat4 _GlobalModelMatrix;
 
 	virtual void draw() {};
 
 
 	void render();
+
 	void updateModelMatrix();
 
 	void setPos(const glm::vec3 pos);
@@ -31,6 +33,5 @@ public:
 
 	void setScale(const glm::vec3 scale);
 	void scale(const glm::vec3 scale);
-
 };
 
