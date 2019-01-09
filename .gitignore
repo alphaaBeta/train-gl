@@ -7,4 +7,5 @@
 /gl_05/Debug
 /gl_05/Release
 *.db
+*.log
 /.vs
