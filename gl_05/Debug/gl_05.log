@@ -1,21 +1,17 @@
-﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(391,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (gl_05.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  Circle.cpp
-  Game.cpp
-  Group.cpp
-  Main.cpp
-  Model.cpp
-  Primitive.cpp
-  Generating Code...
-  LINK : /LTCG specified but no code generation required; remove /LTCG from the link command line to improve linker performance
-Primitive.obj : warning LNK4049: locally defined symbol ___glewActiveTexture imported
-Primitive.obj : warning LNK4049: locally defined symbol ___glewBindBuffer imported
-Primitive.obj : warning LNK4049: locally defined symbol ___glewBufferData imported
-Primitive.obj : warning LNK4049: locally defined symbol ___glewGenBuffers imported
-Primitive.obj : warning LNK4049: locally defined symbol ___glewEnableVertexAttribArray imported
-Primitive.obj : warning LNK4049: locally defined symbol ___glewGetUniformLocation imported
-Primitive.obj : warning LNK4049: locally defined symbol ___glewUniformMatrix4fv imported
-Primitive.obj : warning LNK4049: locally defined symbol ___glewUseProgram imported
-Primitive.obj : warning LNK4049: locally defined symbol ___glewVertexAttribPointer imported
-Primitive.obj : warning LNK4049: locally defined symbol ___glewBindVertexArray imported
-Primitive.obj : warning LNK4049: locally defined symbol ___glewGenVertexArrays imported
-  gl_05.vcxproj -> C:\_GIT\Studia\Debug\Train.exe
+﻿  Game.cpp
+  Cabin.cpp
+  Procedurals.cpp
+  Generowanie kodu...
+  LINK : określono opcję /LTCG, lecz generowanie kodu nie było wymagane; usuń opcję /LTCG z wiersza polecenia konsolidatora w celu podwyższenia wydajności konsolidatora
+Primitive.obj : warning LNK4049: lokalnie zdefiniowany symbol ___glewActiveTexture został zaimportowany
+Primitive.obj : warning LNK4049: lokalnie zdefiniowany symbol ___glewBindBuffer został zaimportowany
+Primitive.obj : warning LNK4049: lokalnie zdefiniowany symbol ___glewBufferData został zaimportowany
+Primitive.obj : warning LNK4049: lokalnie zdefiniowany symbol ___glewGenBuffers został zaimportowany
+Primitive.obj : warning LNK4049: lokalnie zdefiniowany symbol ___glewEnableVertexAttribArray został zaimportowany
+Primitive.obj : warning LNK4049: lokalnie zdefiniowany symbol ___glewGetUniformLocation został zaimportowany
+Primitive.obj : warning LNK4049: lokalnie zdefiniowany symbol ___glewUniformMatrix4fv został zaimportowany
+Primitive.obj : warning LNK4049: lokalnie zdefiniowany symbol ___glewUseProgram został zaimportowany
+Primitive.obj : warning LNK4049: lokalnie zdefiniowany symbol ___glewVertexAttribPointer został zaimportowany
+Primitive.obj : warning LNK4049: lokalnie zdefiniowany symbol ___glewBindVertexArray został zaimportowany
+Primitive.obj : warning LNK4049: lokalnie zdefiniowany symbol ___glewGenVertexArrays został zaimportowany
+  gl_05.vcxproj -> C:\Users\huber\source\repos\ZT3-Lokomotywa\Debug\Train.exe

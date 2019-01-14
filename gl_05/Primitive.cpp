@@ -29,8 +29,6 @@ void Primitive::initVAO() {
     glBindVertexArray(0);
 }
 
-
-
 Primitive::Primitive(
     std::vector<Vertex> &vertices,
     const std::vector<GLuint> &indices) 

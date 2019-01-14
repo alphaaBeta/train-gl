@@ -90,10 +90,12 @@
     <ClCompile Include="Config.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Circle.cpp" />
+    <ClCompile Include="Cabin.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Group.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="Primitive.cpp" />
+    <ClCompile Include="Procedurals.cpp" />
     <ClCompile Include="ShaderProgram.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -110,8 +112,10 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="Group.h" />
     <ClInclude Include="Circle.h" />
+    <ClInclude Include="Cabin.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="Primitive.h" />
+    <ClInclude Include="Procedurals.h" />
     <ClInclude Include="ShaderProgram.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Vertex.h" />

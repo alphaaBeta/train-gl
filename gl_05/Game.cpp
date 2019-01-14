@@ -1,17 +1,18 @@
 #include "Game.h"
 #include "Group.h"
+#include "Cabin.h"
 
 void Game::initUniforms() {
     _shader->setMat4fv(_ViewMatrix, "ViewMatrix");
     _shader->setMat4fv(_ProjMatrix, "ProjectionMatrix");
 }
 
-Game::Game(const char *title, const int width, const int height, bool resizable = false) : W_WIDTH(width), W_HEIGHT(height), _camera(glm::vec3(0.f, 0.f, 1.f), glm::vec3(0.f, 1.f, 0.f)) {
+Game::Game(const char *title, const int width, const int height, bool resizable = false) : W_WIDTH(width), W_HEIGHT(height), _camera(glm::vec3(19.f, 26.f, 10.f), glm::vec3(0.f, 1.f, 0.f)) {
     _window = nullptr;
     _frameBuffWidth = W_WIDTH;
     _frameBuffHeight = W_HEIGHT;
 
-    _camPos = glm::vec3(0.f, 0.f, 1.f);
+    _camPos = glm::vec3(19.f, 26.f, 10.f);
     _worldUp = glm::vec3(0.f, 1.f, 0.f);
     _camFront = glm::vec3(0.f, 0.f, -1.f);
 
@@ -30,14 +31,14 @@ Game::Game(const char *title, const int width, const int height, bool resizable 
 
     initMatrices();
     initShaders();
+
+	
     //initTextures();
     //initMaterials();
     initModels(*workspace);
     //initLights();
     initUniforms();
 
-	
-    
 }
 
 Game::~Game() {
@@ -103,9 +104,9 @@ int Game::getWindowShouldClose() {
 void Game::update(const float &dt) {
     glfwPollEvents();
 
-    for (const auto &i : _objects) {
+    /*for (const auto &i : _objects) {
         i->rotate(glm::vec3(0.0f, 0.1f, 0.0f));
-    }
+    }*/
 
     updateKeyInput(dt);
     updateMouseInput();
@@ -222,32 +223,7 @@ void Game::initShaders() {
 
 void Game::initModels(Group& root)
 {
-	std::vector<Vertex> vertices = {
-		//Position								//Color
-		//Triangle front
-		{glm::vec3(0.f, 0.5f, 0.f),				glm::vec3(1.f, 0.f, 0.f)},
-		{glm::vec3(-0.5f, -0.5f, 0.5f),			glm::vec3(0.f, 1.f, 0.f)},
-		{glm::vec3(0.5f, -0.5f, 0.5f),			glm::vec3(0.f, 0.f, 1.f)},
-
-		//Triangle left
-		{glm::vec3(0.f, 0.5f, 0.f),				glm::vec3(1.f, 1.f, 0.f)},
-		{glm::vec3(-0.5f, -0.5f, -0.5f),			glm::vec3(0.f, 0.f, 1.f)},
-		{glm::vec3(-0.5f, -0.5f, 0.5f),			glm::vec3(0.f, 0.f, 1.f)},
-
-		//Triangle back
-		{glm::vec3(0.f, 0.5f, 0.f),				glm::vec3(1.f, 1.f, 0.f)},
-		{glm::vec3(0.5f, -0.5f, -0.5f),			glm::vec3(0.f, 0.f, 1.f)},
-		{glm::vec3(-0.5f, -0.5f, -0.5f),			glm::vec3(0.f, 0.f, 1.f)},
-
-		//Triangles right
-		{glm::vec3(0.f, 0.5f, 0.f),				glm::vec3(1.f, 1.f, 0.f)},
-		{glm::vec3(0.5f, -0.5f, 0.5f),			glm::vec3(0.f, 0.f, 1.f)},
-		{glm::vec3(0.5f, -0.5f, -0.5f),			glm::vec3(0.f, 0.f, 1.f)}
-	};
-
-	std::vector<GLuint> indices;
-
-	root.addModel(*(new Primitive(vertices, indices)));
+	root.addModel(*(new Cabin()));
 }
 
 
