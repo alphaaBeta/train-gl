@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "Group.h"
 
 void Game::initUniforms() {
     _shader->setMat4fv(_ViewMatrix, "ViewMatrix");
@@ -18,6 +19,10 @@ Game::Game(const char *title, const int width, const int height, bool resizable 
     _nearPlane = 0.1f;
     _farPlane = 1000.f;
 
+	Group* workspace = new Group();
+
+	_objects.push_back(workspace);
+
     initGLFW();
     initWindow(title, resizable);
     initGLEW();
@@ -27,74 +32,12 @@ Game::Game(const char *title, const int width, const int height, bool resizable 
     initShaders();
     //initTextures();
     //initMaterials();
-    //initModels();
+    initModels(*workspace);
     //initLights();
     initUniforms();
 
-    //TODO:: make Primitive class that creates those verts and inds (triangle, rectangle and in the future also 3D objects)
-    std::vector<Vertex> verts = {
-        // Pos							// Color
-        { glm::vec3(-0.5f, 0.5f, 0.f),	glm::vec3(1.f, 0.f, 0.f) },
-        { glm::vec3(-0.5f, -0.5f, 0.f),	glm::vec3(0.f, 1.f, 0.f) },
-        { glm::vec3(0.5f, -0.5f, 0.f),	glm::vec3(0.f, 0.f, 1.f) },
-        { glm::vec3(0.5f, 0.5f, 0.f),	glm::vec3(1.f, 1.f, 0.f) }
-    };
-
-    std::vector<GLuint> inds = {
-        0, 1, 2, //trujkont 1
-        0, 2, 3  //trujkont 2 tworza kwadrat
-    };
-
-
-    // _meshes.push_back(new Mesh(verts, inds));
-
-    std::vector<Vertex> verts2 = {
-        // Pos							// Color
-        { glm::vec3(-0.5f, 0.5f, 0.f),	glm::vec3(1.f, 0.f, 0.f) },
-        { glm::vec3(-0.5f, -0.5f, 0.f),	glm::vec3(0.f, 1.f, 0.f) },
-        { glm::vec3(0.5f, -0.5f, 0.f),	glm::vec3(0.f, 0.f, 1.f) }
-    };
-
-    std::vector<GLuint> inds2 = {
-        0, 1, 2, //trujkont 1
-    };
-
-    //_meshes.push_back(new Mesh(verts2,
-    //                           inds2,
-    //                           glm::vec3(1.0f, 0.f, 0.f)
-    //                           ,glm::vec3(1.0f, 0.f, 0.f)
-    //                          )
-    //                 );
-
-
-
-
-    std::vector<Vertex> vertices = {
-        //Position								//Color
-        //Triangle front
-        {glm::vec3(0.f, 0.5f, 0.f),				glm::vec3(1.f, 0.f, 0.f)},
-        {glm::vec3(-0.5f, -0.5f, 0.5f),			glm::vec3(0.f, 1.f, 0.f)},
-        {glm::vec3(0.5f, -0.5f, 0.5f),			glm::vec3(0.f, 0.f, 1.f)},
-
-        //Triangle left
-        {glm::vec3(0.f, 0.5f, 0.f),				glm::vec3(1.f, 1.f, 0.f)},
-        {glm::vec3(-0.5f, -0.5f, -0.5f),			glm::vec3(0.f, 0.f, 1.f)},
-        {glm::vec3(-0.5f, -0.5f, 0.5f),			glm::vec3(0.f, 0.f, 1.f)},
-
-        //Triangle back
-        {glm::vec3(0.f, 0.5f, 0.f),				glm::vec3(1.f, 1.f, 0.f)},
-        {glm::vec3(0.5f, -0.5f, -0.5f),			glm::vec3(0.f, 0.f, 1.f)},
-        {glm::vec3(-0.5f, -0.5f, -0.5f),			glm::vec3(0.f, 0.f, 1.f)},
-
-        //Triangles right
-        {glm::vec3(0.f, 0.5f, 0.f),				glm::vec3(1.f, 1.f, 0.f)},
-        {glm::vec3(0.5f, -0.5f, 0.5f),			glm::vec3(0.f, 0.f, 1.f)},
-        {glm::vec3(0.5f, -0.5f, -0.5f),			glm::vec3(0.f, 0.f, 1.f)}
-    };
-
-    std::vector<GLuint> indices;
-
-    _meshes.push_back(new Mesh(vertices, indices));
+	
+    
 }
 
 Game::~Game() {
@@ -103,7 +46,7 @@ Game::~Game() {
 
     delete _shader;
 
-    for (const auto &i : _meshes)
+    for (const auto &i : _objects)
         delete i;
 
 }
@@ -160,7 +103,7 @@ int Game::getWindowShouldClose() {
 void Game::update(const float &dt) {
     glfwPollEvents();
 
-    for (const auto &i : _meshes) {
+    for (const auto &i : _objects) {
         i->rotate(glm::vec3(0.0f, 0.1f, 0.0f));
     }
 
@@ -177,8 +120,8 @@ void Game::render() {
     updateUniforms();
 
     //Render models
-    for (const auto &i : _meshes) {
-        i->render(_shader);
+    for (const auto &i : _objects) {
+        i->render();
     }
 
     //End Draw
@@ -274,7 +217,39 @@ void Game::initMatrices() {
 
 void Game::initShaders() {
     _shader = new ShaderProgram("Shader.Vertex", "Shader.Fragment");
+	_shader->Use();
 }
+
+void Game::initModels(Group& root)
+{
+	std::vector<Vertex> vertices = {
+		//Position								//Color
+		//Triangle front
+		{glm::vec3(0.f, 0.5f, 0.f),				glm::vec3(1.f, 0.f, 0.f)},
+		{glm::vec3(-0.5f, -0.5f, 0.5f),			glm::vec3(0.f, 1.f, 0.f)},
+		{glm::vec3(0.5f, -0.5f, 0.5f),			glm::vec3(0.f, 0.f, 1.f)},
+
+		//Triangle left
+		{glm::vec3(0.f, 0.5f, 0.f),				glm::vec3(1.f, 1.f, 0.f)},
+		{glm::vec3(-0.5f, -0.5f, -0.5f),			glm::vec3(0.f, 0.f, 1.f)},
+		{glm::vec3(-0.5f, -0.5f, 0.5f),			glm::vec3(0.f, 0.f, 1.f)},
+
+		//Triangle back
+		{glm::vec3(0.f, 0.5f, 0.f),				glm::vec3(1.f, 1.f, 0.f)},
+		{glm::vec3(0.5f, -0.5f, -0.5f),			glm::vec3(0.f, 0.f, 1.f)},
+		{glm::vec3(-0.5f, -0.5f, -0.5f),			glm::vec3(0.f, 0.f, 1.f)},
+
+		//Triangles right
+		{glm::vec3(0.f, 0.5f, 0.f),				glm::vec3(1.f, 1.f, 0.f)},
+		{glm::vec3(0.5f, -0.5f, 0.5f),			glm::vec3(0.f, 0.f, 1.f)},
+		{glm::vec3(0.5f, -0.5f, -0.5f),			glm::vec3(0.f, 0.f, 1.f)}
+	};
+
+	std::vector<GLuint> indices;
+
+	root.addModel(*(new Primitive(vertices, indices)));
+}
+
 
 //void Game::initTextures() {
 //	return (void)1;

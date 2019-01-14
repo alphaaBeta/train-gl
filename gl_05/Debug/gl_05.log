@@ -1,19 +1,21 @@
-﻿  Camera.cpp
-c:\users\radek\source\repos\zt3-lokomotywa6\gl_05\camera.cpp(72): warning C4244: '+=': conversion from 'double' to 'GLfloat', possible loss of data
-c:\users\radek\source\repos\zt3-lokomotywa6\gl_05\camera.cpp(73): warning C4244: '+=': conversion from 'double' to 'GLfloat', possible loss of data
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(391,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (gl_05.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  Circle.cpp
   Game.cpp
+  Group.cpp
   Main.cpp
+  Model.cpp
+  Primitive.cpp
   Generating Code...
   LINK : /LTCG specified but no code generation required; remove /LTCG from the link command line to improve linker performance
-Mesh.obj : warning LNK4049: locally defined symbol ___glewActiveTexture imported
-Mesh.obj : warning LNK4049: locally defined symbol ___glewBindBuffer imported
-Mesh.obj : warning LNK4049: locally defined symbol ___glewBufferData imported
-Mesh.obj : warning LNK4049: locally defined symbol ___glewGenBuffers imported
-Mesh.obj : warning LNK4049: locally defined symbol ___glewEnableVertexAttribArray imported
-Mesh.obj : warning LNK4049: locally defined symbol ___glewGetUniformLocation imported
-Mesh.obj : warning LNK4049: locally defined symbol ___glewUniformMatrix4fv imported
-Mesh.obj : warning LNK4049: locally defined symbol ___glewUseProgram imported
-Mesh.obj : warning LNK4049: locally defined symbol ___glewVertexAttribPointer imported
-Mesh.obj : warning LNK4049: locally defined symbol ___glewBindVertexArray imported
-Mesh.obj : warning LNK4049: locally defined symbol ___glewGenVertexArrays imported
-  gl_05.vcxproj -> C:\Users\Radek\source\repos\ZT3-Lokomotywa6\Debug\Train.exe
+Primitive.obj : warning LNK4049: locally defined symbol ___glewActiveTexture imported
+Primitive.obj : warning LNK4049: locally defined symbol ___glewBindBuffer imported
+Primitive.obj : warning LNK4049: locally defined symbol ___glewBufferData imported
+Primitive.obj : warning LNK4049: locally defined symbol ___glewGenBuffers imported
+Primitive.obj : warning LNK4049: locally defined symbol ___glewEnableVertexAttribArray imported
+Primitive.obj : warning LNK4049: locally defined symbol ___glewGetUniformLocation imported
+Primitive.obj : warning LNK4049: locally defined symbol ___glewUniformMatrix4fv imported
+Primitive.obj : warning LNK4049: locally defined symbol ___glewUseProgram imported
+Primitive.obj : warning LNK4049: locally defined symbol ___glewVertexAttribPointer imported
+Primitive.obj : warning LNK4049: locally defined symbol ___glewBindVertexArray imported
+Primitive.obj : warning LNK4049: locally defined symbol ___glewGenVertexArrays imported
+  gl_05.vcxproj -> C:\_GIT\Studia\Debug\Train.exe
