@@ -11,7 +11,44 @@ Cabin::Cabin()
 	tempVertices = Procedurals::drawRectangleVertices(19.f, 23.f, 0.5f, 14.f, 13.f);
 	cabinVertices->insert(cabinVertices->end(), tempVertices.begin(), tempVertices.end());
 
-	tempVertices = Procedurals::drawCuboidVertices(31.f, 6.f, 2.5f, 1.f, 17.f, 9.f);
+	tempVertices = Procedurals::drawCuboidVertices(31.f, 7.f, 1.5f, 1.f, 16.f, 11.f);
+	cabinVertices->insert(cabinVertices->end(), tempVertices.begin(), tempVertices.end());
+
+	tempVertices = Procedurals::drawCuboidVertices(26.f, 22.f, 1.5f, 5.f, 1.f, 1.f);
+	cabinVertices->insert(cabinVertices->end(), tempVertices.begin(), tempVertices.end());
+
+	tempVertices = Procedurals::drawCuboidVertices(20.f, 21.f, 1.5f, 6.f, 2.f, 1.f);
+	cabinVertices->insert(cabinVertices->end(), tempVertices.begin(), tempVertices.end());
+
+	tempVertices = Procedurals::drawCuboidVertices(20.f, 16.f, 1.5f, 1.f, 5.f, 1.f);
+	cabinVertices->insert(cabinVertices->end(), tempVertices.begin(), tempVertices.end());
+
+	tempVertices = Procedurals::drawCuboidVertices(25.f, 16.f, 1.5f, 1.f, 5.f, 1.f);
+	cabinVertices->insert(cabinVertices->end(), tempVertices.begin(), tempVertices.end());
+
+	tempVertices = Procedurals::drawCuboidVertices(20.f, 7.f, 1.5f, 6.f, 10.f, 1.f);
+	cabinVertices->insert(cabinVertices->end(), tempVertices.begin(), tempVertices.end());
+
+	//heh
+	tempVertices = Procedurals::drawCuboidVertices(26.f, 22.f, 11.5f, 5.f, 1.f, 1.f);
+	cabinVertices->insert(cabinVertices->end(), tempVertices.begin(), tempVertices.end());
+
+	tempVertices = Procedurals::drawCuboidVertices(20.f, 21.f, 11.5f, 6.f, 2.f, 1.f);
+	cabinVertices->insert(cabinVertices->end(), tempVertices.begin(), tempVertices.end());
+
+	tempVertices = Procedurals::drawCuboidVertices(20.f, 16.f, 11.5f, 1.f, 5.f, 1.f);
+	cabinVertices->insert(cabinVertices->end(), tempVertices.begin(), tempVertices.end());
+
+	tempVertices = Procedurals::drawCuboidVertices(25.f, 16.f, 11.5f, 1.f, 5.f, 1.f);
+	cabinVertices->insert(cabinVertices->end(), tempVertices.begin(), tempVertices.end());
+
+	tempVertices = Procedurals::drawCuboidVertices(20.f, 7.f, 11.5f, 6.f, 10.f, 1.f);
+	cabinVertices->insert(cabinVertices->end(), tempVertices.begin(), tempVertices.end());
+
+	tempVertices = Procedurals::drawCuboidVertices(20.f, 21.f, 2.5f, 1.f, 2.f, 9.f);
+	cabinVertices->insert(cabinVertices->end(), tempVertices.begin(), tempVertices.end());
+
+	tempVertices = Procedurals::drawCuboidVertices(20.f, 17.f, 5.5f, 1.f, 4.f, 3.f);
 	cabinVertices->insert(cabinVertices->end(), tempVertices.begin(), tempVertices.end());
 
 	std::vector<GLuint> tempIndices;
@@ -21,8 +58,49 @@ Cabin::Cabin()
 	tempIndices = Procedurals::drawRectangleIndices(0);
 	cabinIndices->insert(cabinIndices->end(), tempIndices.begin(), tempIndices.end());
 
-	tempIndices = Procedurals::drawCuboidIndices(4);
+	for (GLuint i = 4; i <= 100; i = i + 8) {
+		tempIndices = Procedurals::drawCuboidIndices(i);
+		cabinIndices->insert(cabinIndices->end(), tempIndices.begin(), tempIndices.end());
+	}
+
+	/*tempIndices = Procedurals::drawCuboidIndices(4);
 	cabinIndices->insert(cabinIndices->end(), tempIndices.begin(), tempIndices.end());
+
+	tempIndices = Procedurals::drawCuboidIndices(12);
+	cabinIndices->insert(cabinIndices->end(), tempIndices.begin(), tempIndices.end());
+
+	tempIndices = Procedurals::drawCuboidIndices(20);
+	cabinIndices->insert(cabinIndices->end(), tempIndices.begin(), tempIndices.end());
+
+	tempIndices = Procedurals::drawCuboidIndices(28);
+	cabinIndices->insert(cabinIndices->end(), tempIndices.begin(), tempIndices.end());
+
+	tempIndices = Procedurals::drawCuboidIndices(36);
+	cabinIndices->insert(cabinIndices->end(), tempIndices.begin(), tempIndices.end());
+
+	tempIndices = Procedurals::drawCuboidIndices(44);
+	cabinIndices->insert(cabinIndices->end(), tempIndices.begin(), tempIndices.end());
+
+	tempIndices = Procedurals::drawCuboidIndices(52);
+	cabinIndices->insert(cabinIndices->end(), tempIndices.begin(), tempIndices.end());
+
+	tempIndices = Procedurals::drawCuboidIndices(60);
+	cabinIndices->insert(cabinIndices->end(), tempIndices.begin(), tempIndices.end());
+	
+	tempIndices = Procedurals::drawCuboidIndices(68);
+	cabinIndices->insert(cabinIndices->end(), tempIndices.begin(), tempIndices.end());
+
+	tempIndices = Procedurals::drawCuboidIndices(76);
+	cabinIndices->insert(cabinIndices->end(), tempIndices.begin(), tempIndices.end());
+
+	tempIndices = Procedurals::drawCuboidIndices(84);
+	cabinIndices->insert(cabinIndices->end(), tempIndices.begin(), tempIndices.end());
+
+	tempIndices = Procedurals::drawCuboidIndices(92);
+	cabinIndices->insert(cabinIndices->end(), tempIndices.begin(), tempIndices.end());
+
+	tempIndices = Procedurals::drawCuboidIndices(100);
+	cabinIndices->insert(cabinIndices->end(), tempIndices.begin(), tempIndices.end());*/
 
 	Primitive::_vertices = *cabinVertices;
 	Primitive::_indices = *cabinIndices;

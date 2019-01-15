@@ -1,7 +1,4 @@
-﻿  Game.cpp
-  Cabin.cpp
-  Procedurals.cpp
-  Generowanie kodu...
+﻿  Cabin.cpp
   LINK : określono opcję /LTCG, lecz generowanie kodu nie było wymagane; usuń opcję /LTCG z wiersza polecenia konsolidatora w celu podwyższenia wydajności konsolidatora
 Primitive.obj : warning LNK4049: lokalnie zdefiniowany symbol ___glewActiveTexture został zaimportowany
 Primitive.obj : warning LNK4049: lokalnie zdefiniowany symbol ___glewBindBuffer został zaimportowany
