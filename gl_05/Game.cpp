@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "Group.h"
 #include "Cabin.h"
+#include "Boiler.h"
 
 void Game::initUniforms() {
     _shader->setMat4fv(_ViewMatrix, "ViewMatrix");
@@ -224,6 +225,7 @@ void Game::initShaders() {
 void Game::initModels(Group& root)
 {
 	root.addModel(*(new Cabin()));
+	root.addModel(*(new Boiler()));
 }
 
 
