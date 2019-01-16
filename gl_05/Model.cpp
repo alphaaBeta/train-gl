@@ -23,7 +23,7 @@ void Model::updateModelMatrix() {
 	_ModelMatrix = glm::rotate(_ModelMatrix, glm::radians(_rotation.x), glm::vec3(1.f, 0.f, 0.f));
 	_ModelMatrix = glm::rotate(_ModelMatrix, glm::radians(_rotation.y), glm::vec3(0.f, 1.f, 0.f));
 	_ModelMatrix = glm::rotate(_ModelMatrix, glm::radians(_rotation.z), glm::vec3(0.f, 0.f, 1.f));
-	_ModelMatrix = glm::translate(_ModelMatrix, _pos); //- _origin);
+	_ModelMatrix = glm::translate(_ModelMatrix, _pos - _origin);
 	_ModelMatrix = glm::scale(_ModelMatrix, _scale);
 }
 
@@ -32,7 +32,7 @@ void Model::setPos(const glm::vec3 pos) {
 }
 
 void Model::move(const glm::vec3 pos) {
-	_pos += pos;
+	_pos += glm::vec3(pos[1], -pos[0], pos[2]);
 }
 
 void Model::setOrigin(const glm::vec3 origin) {
