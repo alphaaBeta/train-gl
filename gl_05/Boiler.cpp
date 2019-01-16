@@ -5,7 +5,7 @@
 Boiler::Boiler() {
 	std::vector<Vertex> *boilerVertices = new std::vector<Vertex>();
 
-	*boilerVertices = Procedurals::drawCylinderVertices(4.f, 11.5f, 07.f, 17.f, 4.5f, 1.f, 60);
+	*boilerVertices = Procedurals::drawCylinderVertices(4.f, 11.5f, 7.f, 17.f, 4.5f, 1.f, 60);
 
 	std::vector<GLuint> *boilerIndices = new std::vector<GLuint>();
 

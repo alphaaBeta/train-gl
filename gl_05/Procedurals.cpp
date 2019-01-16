@@ -86,13 +86,13 @@ std::vector<Vertex> Procedurals::drawCylinderVertices(float positionX, float pos
 	};
 
 	for (float degree = 0; degree < 360; degree += 360.f/accuracy) {
-		cylinderVertices.push_back({glm::vec3(positionX, positionY + radius * sin(degree * PI/180.f), positionZ + radius * cos(degree * PI/180.f)), glm::vec3(1.f, 0.f, 0.f), glm::vec3(-1.f, 0.f, 0.f)});
+		cylinderVertices.push_back({glm::vec3(positionX, positionY + radius * sin(degree * PI/180.f), positionZ + radius * cos(degree * PI/180.f)), glm::vec3(1.f, 0.f, 0.f), glm::vec3(0.f, radius * sin(degree * PI / 180.f), radius * cos(degree * PI / 180.f))});
 	};
 
-	cylinderVertices.push_back({glm::vec3(positionX + height, positionY, positionZ),			glm::vec3(1.f, 0.f, 0.f),			glm::vec3(-1.f, 0.f, 0.f)});
+	cylinderVertices.push_back({glm::vec3(positionX + height, positionY, positionZ),			glm::vec3(1.f, 0.f, 0.f),			glm::vec3(1.f, 0.f, 0.f)});
 
 	for (float degree = 0; degree < 360; degree += 360.f/accuracy) {
-		cylinderVertices.push_back({glm::vec3(positionX + height, positionY + (radius*baseRatio) * sin(degree * PI / 180.f), positionZ  + (radius*baseRatio) * cos(degree * PI / 180.f)), glm::vec3(1.f, 0.f, 0.f), glm::vec3(-1.f, 0.f, 0.f) });
+		cylinderVertices.push_back({glm::vec3(positionX + height, positionY + (radius*baseRatio) * sin(degree * PI / 180.f), positionZ  + (radius*baseRatio) * cos(degree * PI / 180.f)), glm::vec3(1.f, 0.f, 0.f), glm::vec3(0.f, (radius*baseRatio) * sin(degree * PI / 180.f), (radius*baseRatio) * cos(degree * PI / 180.f)) });
 	};
 
 	return cylinderVertices;
@@ -102,42 +102,42 @@ std::vector<GLuint> Procedurals::drawCylinderIndices(GLuint startingIndex, unsig
 	std::vector<GLuint> cylinderIndices = {};
 
 	for (unsigned int i = 1; i < accuracy; ++i) {
-		cylinderIndices.push_back(0);
-		cylinderIndices.push_back(i);
-		cylinderIndices.push_back(i+1);
+		cylinderIndices.push_back(startingIndex);
+		cylinderIndices.push_back(startingIndex + i);
+		cylinderIndices.push_back(startingIndex + i+1);
 	}
 
-	cylinderIndices.push_back(0);
-	cylinderIndices.push_back(accuracy);
-	cylinderIndices.push_back(1);
+	cylinderIndices.push_back(startingIndex);
+	cylinderIndices.push_back(startingIndex + accuracy);
+	cylinderIndices.push_back(startingIndex + 1);
 
 	for (unsigned int i = accuracy + 2; i < 2 * accuracy + 1; ++i) {
-		cylinderIndices.push_back(accuracy + 1);
-		cylinderIndices.push_back(i);
-		cylinderIndices.push_back(i+1);
+		cylinderIndices.push_back(startingIndex + accuracy + 1);
+		cylinderIndices.push_back(startingIndex + i);
+		cylinderIndices.push_back(startingIndex + i+1);
 	}
 
-	cylinderIndices.push_back(accuracy + 1);
-	cylinderIndices.push_back(2 * accuracy + 1);
-	cylinderIndices.push_back(accuracy + 2);
+	cylinderIndices.push_back(startingIndex + accuracy + 1);
+	cylinderIndices.push_back(startingIndex + 2 * accuracy + 1);
+	cylinderIndices.push_back(startingIndex + accuracy + 2);
 
 	for (unsigned int i = 1; i < accuracy; ++i) {
-		cylinderIndices.push_back(i);
-		cylinderIndices.push_back(i + 1);
-		cylinderIndices.push_back(accuracy + 1 + i);
+		cylinderIndices.push_back(startingIndex + i);
+		cylinderIndices.push_back(startingIndex + i+1);
+		cylinderIndices.push_back(startingIndex + accuracy + 1 + i);
 
-		cylinderIndices.push_back(i + 1);
-		cylinderIndices.push_back(accuracy + 1 + i);
-		cylinderIndices.push_back(accuracy + 2 + i);
+		cylinderIndices.push_back(startingIndex + i + 1);
+		cylinderIndices.push_back(startingIndex + accuracy + 1 + i);
+		cylinderIndices.push_back(startingIndex + accuracy + 2 + i);
 	}
 
-	cylinderIndices.push_back(accuracy);
-	cylinderIndices.push_back(1);
-	cylinderIndices.push_back(2 * accuracy + 1);
+	cylinderIndices.push_back(startingIndex + accuracy);
+	cylinderIndices.push_back(startingIndex + 1);
+	cylinderIndices.push_back(startingIndex + 2 * accuracy + 1);
 
-	cylinderIndices.push_back(1);
-	cylinderIndices.push_back(2 * accuracy + 1);
-	cylinderIndices.push_back(accuracy + 2);
+	cylinderIndices.push_back(startingIndex + 1);
+	cylinderIndices.push_back(startingIndex + 2 * accuracy + 1);
+	cylinderIndices.push_back(startingIndex + accuracy + 2);
 
 	return cylinderIndices;
 }
