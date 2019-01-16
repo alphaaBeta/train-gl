@@ -140,15 +140,19 @@ void Game::render() {
 void Game::updateUniforms() {
     //Update view matrix (camera)
     _ViewMatrix = _camera.getViewMatrix();
+    _lightPos = _camera.getPosition();
 
     _shaders[MODELS]->setMat4fv(_ViewMatrix, "ViewMatrix");
     _shaders[MODELS]->setVec3f(_camera.getPosition(), "cameraPos");
     //light related, for_now_there, these should be attributes of Material or Light classes
-    _shaders[MODELS]->setVec3f(_lightPos, "light.direction");
-    _shaders[MODELS]->setVec3f(glm::vec3(0.2f), "light.ambient");
+    _shaders[MODELS]->setVec3f(_lightPos, "light.position");
+    _shaders[MODELS]->setVec3f(glm::vec3(3.0f), "light.ambient");
     _shaders[MODELS]->setVec3f(glm::vec3(0.5f), "light.diffuse");
     _shaders[MODELS]->setVec3f(glm::vec3(1.0f), "light.specular");
     _shaders[MODELS]->set1f(32.f, "light.shininess");
+    _shaders[MODELS]->set1f(1.0f, "light.constant");
+    _shaders[MODELS]->set1f(0.027f, "light.linear");
+    _shaders[MODELS]->set1f(0.0028f, "light.quadratic");
     //end for_now_there
     //Update framebuffer size and projection matrix (usefull when resizing window)
     glfwGetFramebufferSize(_window, &_frameBuffWidth, &_frameBuffHeight);
@@ -232,10 +236,54 @@ void Game::initShaders() {
 
 void Game::initModels(Group &root) {
     root.addModel(*(new Cabin()));
+    std::vector<Vertex> vertices = {
+        // positions			//color				// normals
+        {glm::vec3(  -0.5f, -0.5f, -0.5f), glm::vec3(1.0f),glm::vec3( 0.0f,  0.0f, -1.0f)},
+        {glm::vec3(  0.5f, -0.5f,  -0.5f), glm::vec3(1.0f),glm::vec3( 0.0f,  0.0f, -1.0f)},
+        {glm::vec3(  0.5f,  0.5f,  -0.5f), glm::vec3(1.0f),glm::vec3( 0.0f,  0.0f, -1.0f)},
+        {glm::vec3(  0.5f,  0.5f,  -0.5f), glm::vec3(1.0f),glm::vec3( 0.0f,  0.0f, -1.0f)},
+        {glm::vec3(  -0.5f,  0.5f, -0.5f), glm::vec3(1.0f),glm::vec3( 0.0f,  0.0f, -1.0f)},
+        {glm::vec3(  -0.5f, -0.5f, -0.5f), glm::vec3(1.0f),glm::vec3( 0.0f,  0.0f, -1.0f)},
+        {glm::vec3(  -0.5f, -0.5f,  0.5f), glm::vec3(1.0f),glm::vec3( 0.0f,  0.0f,  1.0f)},
+        {glm::vec3(  0.5f, -0.5f,   0.5f), glm::vec3(1.0f),glm::vec3( 0.0f,  0.0f,  1.0f)},
+        {glm::vec3(  0.5f,  0.5f,   0.5f), glm::vec3(1.0f),glm::vec3( 0.0f,  0.0f,  1.0f)},
+        {glm::vec3(  0.5f,  0.5f,   0.5f), glm::vec3(1.0f),glm::vec3( 0.0f,  0.0f,  1.0f)},
+        {glm::vec3(  -0.5f,  0.5f,  0.5f), glm::vec3(1.0f),glm::vec3( 0.0f,  0.0f,  1.0f)},
+        {glm::vec3(  -0.5f, -0.5f,  0.5f), glm::vec3(1.0f),glm::vec3( 0.0f,  0.0f,  1.0f)},
+        {glm::vec3(  -0.5f,  0.5f,  0.5f), glm::vec3(1.0f),glm::vec3(-1.0f,  0.0f,  0.0f)},
+        {glm::vec3(  -0.5f,  0.5f, -0.5f), glm::vec3(1.0f),glm::vec3(-1.0f,  0.0f,  0.0f)},
+        {glm::vec3(  -0.5f, -0.5f, -0.5f), glm::vec3(1.0f),glm::vec3(-1.0f,  0.0f,  0.0f)},
+        {glm::vec3(  -0.5f, -0.5f, -0.5f), glm::vec3(1.0f),glm::vec3(-1.0f,  0.0f,  0.0f)},
+        {glm::vec3(  -0.5f, -0.5f,  0.5f), glm::vec3(1.0f),glm::vec3(-1.0f,  0.0f,  0.0f)},
+        {glm::vec3(  -0.5f,  0.5f,  0.5f), glm::vec3(1.0f),glm::vec3(-1.0f,  0.0f,  0.0f)},
+        {glm::vec3(  0.5f,  0.5f,   0.5f), glm::vec3(1.0f),glm::vec3( 1.0f,  0.0f,  0.0f)},
+        {glm::vec3(  0.5f,  0.5f,  -0.5f), glm::vec3(1.0f),glm::vec3( 1.0f,  0.0f,  0.0f)},
+        {glm::vec3(  0.5f, -0.5f,  -0.5f), glm::vec3(1.0f),glm::vec3( 1.0f,  0.0f,  0.0f)},
+        {glm::vec3(  0.5f, -0.5f,  -0.5f), glm::vec3(1.0f),glm::vec3( 1.0f,  0.0f,  0.0f)},
+        {glm::vec3(  0.5f, -0.5f,   0.5f), glm::vec3(1.0f),glm::vec3( 1.0f,  0.0f,  0.0f)},
+        {glm::vec3(  0.5f,  0.5f,   0.5f), glm::vec3(1.0f),glm::vec3( 1.0f,  0.0f,  0.0f)},
+        {glm::vec3(  -0.5f, -0.5f, -0.5f), glm::vec3(1.0f),glm::vec3( 0.0f, -1.0f,  0.0f)},
+        {glm::vec3(  0.5f, -0.5f,  -0.5f), glm::vec3(1.0f),glm::vec3( 0.0f, -1.0f,  0.0f)},
+        {glm::vec3(  0.5f, -0.5f,   0.5f), glm::vec3(1.0f),glm::vec3( 0.0f, -1.0f,  0.0f)},
+        {glm::vec3(  0.5f, -0.5f,   0.5f), glm::vec3(1.0f),glm::vec3( 0.0f, -1.0f,  0.0f)},
+        {glm::vec3(  -0.5f, -0.5f,  0.5f), glm::vec3(1.0f),glm::vec3( 0.0f, -1.0f,  0.0f)},
+        {glm::vec3(  -0.5f, -0.5f, -0.5f), glm::vec3(1.0f),glm::vec3( 0.0f, -1.0f,  0.0f)},
+        {glm::vec3(  -0.5f,  0.5f, -0.5f), glm::vec3(1.0f),glm::vec3( 0.0f,  1.0f,  0.0f)},
+        {glm::vec3(  0.5f,  0.5f,  -0.5f), glm::vec3(1.0f),glm::vec3( 0.0f,  1.0f,  0.0f)},
+        {glm::vec3(  0.5f,  0.5f,   0.5f), glm::vec3(1.0f),glm::vec3( 0.0f,  1.0f,  0.0f)},
+        {glm::vec3(  0.5f,  0.5f,   0.5f), glm::vec3(1.0f),glm::vec3( 0.0f,  1.0f,  0.0f)},
+        {glm::vec3(  -0.5f,  0.5f,  0.5f), glm::vec3(1.0f),glm::vec3( 0.0f,  1.0f,  0.0f)},
+        {glm::vec3(  -0.5f,  0.5f, -0.5f), glm::vec3(1.0f),glm::vec3( 0.0f,  1.0f,  0.0f)}
+    };
+    std::vector<GLuint> inds;
+    auto prim = new Primitive(vertices, inds);
+    prim->move(_camera.getPosition());
+    //root.addModel(*(prim));
+    //_camera.setPosition(glm::vec3(5.f));
 }
 
 void Game::initLights() {
-    _lightPos = glm::vec3(-0.2f, -1.0f, -0.3f);
+    _lightPos = _camera.getPosition();
 }
 
 

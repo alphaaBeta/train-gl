@@ -1,12 +1,50 @@
 #version 330 core
 
+struct Light {
+    vec3 position;  
+  
+    vec3 ambient;
+    vec3 diffuse;
+    vec3 specular;
+
+	float shininess;
+    float constant;
+    float linear;
+    float quadratic;
+};
+
 in vec3 vs_position;
 in vec3 vs_color;
-
+in vec3 vs_normal;
 
 out vec4 fs_color;
 
+uniform vec3 cameraPos;
+uniform Light light;
+
 void main()
 {
-	fs_color = vec4(vs_color, 1.f);
+	vec3 ambient = light.ambient * vs_color.rgb;
+
+	vec3 norm = normalize(vs_normal);
+	vec3 lightDir = normalize(light.position - vs_position);
+	float diff = max(dot(norm, lightDir), 0.f);
+	vec3 diffuse = light.diffuse * diff * vs_color.rgb;
+
+	vec3 viewDir = normalize(cameraPos - vs_position);
+	vec3 reflectDir = reflect(-lightDir, norm);
+	float spec = pow(max(dot(cameraPos, reflectDir), 0.f), light.shininess);
+	vec3 specular = light.specular * spec * vs_color.rgb;
+
+	float distance = length(light.position - vs_position);
+    float attenuation = 1.0 / (light.constant + light.linear * distance + light.quadratic * (distance * distance));
+
+	ambient  *= attenuation;  
+    diffuse   *= attenuation;
+    specular *= attenuation;
+
+	vec3 result = ambient + diffuse + specular;
+	fs_color = vec4(result, 1.f);
+	//    fs_color = vec4(1.0);
+
 }

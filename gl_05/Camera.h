@@ -32,6 +32,7 @@ class Camera {
     Camera(glm::vec3 pos, glm::vec3 worldUp);
     ~Camera();
     const glm::vec3 getPosition() const;
+    const void setPosition(glm::vec3 pos);
     const glm::mat4 getViewMatrix();
     void move(const float &dt, const int direction);
     void updateMouseInput(const float &dt, const double &offsetX, const double &offsetY);
