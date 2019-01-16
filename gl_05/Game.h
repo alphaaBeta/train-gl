@@ -14,6 +14,8 @@
 #include "Camera.h"
 #include "Primitive.h"
 
+enum {LIGHT = 0, MODELS};
+
 class Group;
 
 class Game {
@@ -49,14 +51,15 @@ class Game {
     glm::mat4 _ProjMatrix;
 
     // Shaders
-    ShaderProgram *_shader;
+    std::vector<ShaderProgram *> _shaders;
 
     // TODO:Textures
 
     // Models
     std::vector<Model *> _objects;
 
-    // TODO: Lights
+    // Light (for now used as directional light)
+    glm::vec3 _lightPos;
 
     void initGLFW();
     void initWindow(const char *title, bool resizable);
@@ -66,7 +69,7 @@ class Game {
     void initShaders();
     //void initTextures();
     void initModels(Group &root);
-    //void initLights();
+    void initLights();
     void initUniforms();
 
   public:

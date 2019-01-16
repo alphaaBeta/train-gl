@@ -3,8 +3,8 @@
 #include "Cabin.h"
 
 void Game::initUniforms() {
-    _shader->setMat4fv(_ViewMatrix, "ViewMatrix");
-    _shader->setMat4fv(_ProjMatrix, "ProjectionMatrix");
+    _shaders[MODELS]->setMat4fv(_ViewMatrix, "ViewMatrix");
+    _shaders[MODELS]->setMat4fv(_ProjMatrix, "ProjMatrix");
 }
 
 Game::Game(const char *title, const int width, const int height, bool resizable = false) : W_WIDTH(width), W_HEIGHT(height), _camera(glm::vec3(19.f, 26.f, 10.f), glm::vec3(0.f, 1.f, 0.f)) {
@@ -20,9 +20,9 @@ Game::Game(const char *title, const int width, const int height, bool resizable 
     _nearPlane = 0.1f;
     _farPlane = 1000.f;
 
-	Group* workspace = new Group();
+    Group *workspace = new Group();
 
-	_objects.push_back(workspace);
+    _objects.push_back(workspace);
 
     initGLFW();
     initWindow(title, resizable);
@@ -32,7 +32,7 @@ Game::Game(const char *title, const int width, const int height, bool resizable 
     initMatrices();
     initShaders();
 
-	
+
     //initTextures();
     //initMaterials();
     initModels(*workspace);
@@ -45,7 +45,9 @@ Game::~Game() {
     glfwDestroyWindow(_window);
     glfwTerminate();
 
-    delete _shader;
+    for (const auto &i : _shaders) {
+        delete i;
+    }
 
     for (const auto &i : _objects)
         delete i;
@@ -105,7 +107,7 @@ void Game::update(const float &dt) {
     glfwPollEvents();
 
     /*for (const auto &i : _objects) {
-        i->rotate(glm::vec3(0.0f, 0.1f, 0.0f));
+    	i->rotate(glm::vec3(0.0f, 0.1f, 0.0f));
     }*/
 
     updateKeyInput(dt);
@@ -139,9 +141,15 @@ void Game::updateUniforms() {
     //Update view matrix (camera)
     _ViewMatrix = _camera.getViewMatrix();
 
-    _shader->setMat4fv(_ViewMatrix, "ViewMatrix");
-    _shader->setVec3f(_camera.getPosition(), "cameraPos");
-
+    _shaders[MODELS]->setMat4fv(_ViewMatrix, "ViewMatrix");
+    _shaders[MODELS]->setVec3f(_camera.getPosition(), "cameraPos");
+    //light related, for_now_there, these should be attributes of Material or Light classes
+    _shaders[MODELS]->setVec3f(_lightPos, "light.direction");
+    _shaders[MODELS]->setVec3f(glm::vec3(0.2f), "light.ambient");
+    _shaders[MODELS]->setVec3f(glm::vec3(0.5f), "light.diffuse");
+    _shaders[MODELS]->setVec3f(glm::vec3(1.0f), "light.specular");
+    _shaders[MODELS]->set1f(32.f, "light.shininess");
+    //end for_now_there
     //Update framebuffer size and projection matrix (usefull when resizing window)
     glfwGetFramebufferSize(_window, &_frameBuffWidth, &_frameBuffHeight);
 
@@ -152,7 +160,7 @@ void Game::updateUniforms() {
                       _farPlane
                   );
 
-    _shader->setMat4fv(_ProjMatrix, "ProjMatrix");
+    _shaders[MODELS]->setMat4fv(_ProjMatrix, "ProjMatrix");
 }
 
 void Game::initGLFW() {
@@ -217,13 +225,17 @@ void Game::initMatrices() {
 }
 
 void Game::initShaders() {
-    _shader = new ShaderProgram("Shader.Vertex", "Shader.Fragment");
-	_shader->Use();
+    _shaders.push_back(new ShaderProgram("Light.Vertex", "Light.Fragment"));
+    _shaders.push_back(new ShaderProgram("Shader.Vertex", "Shader.Fragment"));
+    //_shader->Use();
 }
 
-void Game::initModels(Group& root)
-{
-	root.addModel(*(new Cabin()));
+void Game::initModels(Group &root) {
+    root.addModel(*(new Cabin()));
+}
+
+void Game::initLights() {
+    _lightPos = glm::vec3(-0.2f, -1.0f, -0.3f);
 }
 
 

@@ -62,6 +62,12 @@
     <None Include="Shader.Fragment">
       <Filter>Source Files\Shader</Filter>
     </None>
+    <None Include="Light.Vertex">
+      <Filter>Source Files\Shader</Filter>
+    </None>
+    <None Include="Light.Fragment">
+      <Filter>Source Files\Shader</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="iipw.png">
