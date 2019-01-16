@@ -1,6 +1,6 @@
 #include "Procedurals.h"
 
-#define PI 3.14159265
+#define PI 3.14159265359
 
 Procedurals::Procedurals()
 {
@@ -86,7 +86,7 @@ std::vector<Vertex> Procedurals::drawCylinderVertices(float positionX, float pos
 	};
 
 	for (float degree = 0; degree < 360; degree += 360.f/accuracy) {
-		cylinderVertices.push_back({glm::vec3(positionX, positionY + radius * sin(degree * PI/180.f), positionZ + radius * cos(degree * PI / 180.f)), glm::vec3(1.f, 0.f, 0.f), glm::vec3(-1.f, 0.f, 0.f)});
+		cylinderVertices.push_back({glm::vec3(positionX, positionY + radius * sin(degree * PI/180.f), positionZ + radius * cos(degree * PI/180.f)), glm::vec3(1.f, 0.f, 0.f), glm::vec3(-1.f, 0.f, 0.f)});
 	};
 
 	cylinderVertices.push_back({glm::vec3(positionX + height, positionY, positionZ),			glm::vec3(1.f, 0.f, 0.f),			glm::vec3(-1.f, 0.f, 0.f)});
@@ -111,11 +111,15 @@ std::vector<GLuint> Procedurals::drawCylinderIndices(GLuint startingIndex, unsig
 	cylinderIndices.push_back(accuracy);
 	cylinderIndices.push_back(1);
 
-	for (unsigned int i = accuracy + 3; i < 2 * accuracy + 1; ++i) {
-		cylinderIndices.push_back(accuracy + 2);
+	for (unsigned int i = accuracy + 2; i < 2 * accuracy + 1; ++i) {
+		cylinderIndices.push_back(accuracy + 1);
 		cylinderIndices.push_back(i);
 		cylinderIndices.push_back(i+1);
 	}
+
+	cylinderIndices.push_back(accuracy + 1);
+	cylinderIndices.push_back(2 * accuracy + 1);
+	cylinderIndices.push_back(accuracy + 2);
 
 	for (unsigned int i = 1; i < accuracy; ++i) {
 		cylinderIndices.push_back(i);
@@ -133,7 +137,7 @@ std::vector<GLuint> Procedurals::drawCylinderIndices(GLuint startingIndex, unsig
 
 	cylinderIndices.push_back(1);
 	cylinderIndices.push_back(2 * accuracy + 1);
-	cylinderIndices.push_back(accuracy + 3);
+	cylinderIndices.push_back(accuracy + 2);
 
 	return cylinderIndices;
 }

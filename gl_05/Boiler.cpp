@@ -5,11 +5,11 @@
 Boiler::Boiler() {
 	std::vector<Vertex> *boilerVertices = new std::vector<Vertex>();
 
-	*boilerVertices = Procedurals::drawCylinderVertices(0.f, 0.f, 0.f, 10.f, 5.f, 0.f, 37);
+	*boilerVertices = Procedurals::drawCylinderVertices(4.f, 11.5f, 07.f, 17.f, 4.5f, 1.f, 60);
 
 	std::vector<GLuint> *boilerIndices = new std::vector<GLuint>();
 
-	*boilerIndices = Procedurals::drawCylinderIndices(0, 37);
+	*boilerIndices = Procedurals::drawCylinderIndices(0, 60);
 
 	Primitive::_vertices = *boilerVertices;
 	Primitive::_indices = *boilerIndices;
