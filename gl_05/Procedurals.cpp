@@ -80,7 +80,7 @@ std::vector<GLuint> Procedurals::drawRectangleIndices(GLuint startingIndex) {
 	return rectangleIndices;
 }
 
-std::vector<Vertex> Procedurals::drawCylinderVertices(float positionX, float positionY, float positionZ, float height, float radius, unsigned int accuracy) {
+std::vector<Vertex> Procedurals::drawCylinderVertices(float positionX, float positionY, float positionZ, float height, float radius, float baseRatio, unsigned int accuracy) {
 	std::vector<Vertex> cylinderVertices = {
 		{glm::vec3(positionX, positionY, positionZ),							glm::vec3(1.f, 0.f, 0.f),			glm::vec3(-1.f, 0.f, 0.f)}
 	};
@@ -92,7 +92,7 @@ std::vector<Vertex> Procedurals::drawCylinderVertices(float positionX, float pos
 	cylinderVertices.push_back({glm::vec3(positionX + height, positionY, positionZ),			glm::vec3(1.f, 0.f, 0.f),			glm::vec3(-1.f, 0.f, 0.f)});
 
 	for (float degree = 0; degree < 360; degree += 360.f/accuracy) {
-		cylinderVertices.push_back({glm::vec3(positionX + height, positionY + radius * sin(degree * PI / 180.f), positionZ  + radius * cos(degree * PI / 180.f)), glm::vec3(1.f, 0.f, 0.f), glm::vec3(-1.f, 0.f, 0.f) });
+		cylinderVertices.push_back({glm::vec3(positionX + height, positionY + (radius*baseRatio) * sin(degree * PI / 180.f), positionZ  + (radius*baseRatio) * cos(degree * PI / 180.f)), glm::vec3(1.f, 0.f, 0.f), glm::vec3(-1.f, 0.f, 0.f) });
 	};
 
 	return cylinderVertices;
