@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "Group.h"
 #include "Cabin.h"
+#include "Boiler.h"
 
 void Game::initUniforms() {
     _shaders[MODELS]->setMat4fv(_ViewMatrix, "ViewMatrix");
@@ -236,50 +237,8 @@ void Game::initShaders() {
 
 void Game::initModels(Group &root) {
     root.addModel(*(new Cabin()));
-    std::vector<Vertex> vertices = {
-        // positions			//color				// normals
-        {glm::vec3(  -0.5f, -0.5f, -0.5f), glm::vec3(1.0f),glm::vec3( 0.0f,  0.0f, -1.0f)},
-        {glm::vec3(  0.5f, -0.5f,  -0.5f), glm::vec3(1.0f),glm::vec3( 0.0f,  0.0f, -1.0f)},
-        {glm::vec3(  0.5f,  0.5f,  -0.5f), glm::vec3(1.0f),glm::vec3( 0.0f,  0.0f, -1.0f)},
-        {glm::vec3(  0.5f,  0.5f,  -0.5f), glm::vec3(1.0f),glm::vec3( 0.0f,  0.0f, -1.0f)},
-        {glm::vec3(  -0.5f,  0.5f, -0.5f), glm::vec3(1.0f),glm::vec3( 0.0f,  0.0f, -1.0f)},
-        {glm::vec3(  -0.5f, -0.5f, -0.5f), glm::vec3(1.0f),glm::vec3( 0.0f,  0.0f, -1.0f)},
-        {glm::vec3(  -0.5f, -0.5f,  0.5f), glm::vec3(1.0f),glm::vec3( 0.0f,  0.0f,  1.0f)},
-        {glm::vec3(  0.5f, -0.5f,   0.5f), glm::vec3(1.0f),glm::vec3( 0.0f,  0.0f,  1.0f)},
-        {glm::vec3(  0.5f,  0.5f,   0.5f), glm::vec3(1.0f),glm::vec3( 0.0f,  0.0f,  1.0f)},
-        {glm::vec3(  0.5f,  0.5f,   0.5f), glm::vec3(1.0f),glm::vec3( 0.0f,  0.0f,  1.0f)},
-        {glm::vec3(  -0.5f,  0.5f,  0.5f), glm::vec3(1.0f),glm::vec3( 0.0f,  0.0f,  1.0f)},
-        {glm::vec3(  -0.5f, -0.5f,  0.5f), glm::vec3(1.0f),glm::vec3( 0.0f,  0.0f,  1.0f)},
-        {glm::vec3(  -0.5f,  0.5f,  0.5f), glm::vec3(1.0f),glm::vec3(-1.0f,  0.0f,  0.0f)},
-        {glm::vec3(  -0.5f,  0.5f, -0.5f), glm::vec3(1.0f),glm::vec3(-1.0f,  0.0f,  0.0f)},
-        {glm::vec3(  -0.5f, -0.5f, -0.5f), glm::vec3(1.0f),glm::vec3(-1.0f,  0.0f,  0.0f)},
-        {glm::vec3(  -0.5f, -0.5f, -0.5f), glm::vec3(1.0f),glm::vec3(-1.0f,  0.0f,  0.0f)},
-        {glm::vec3(  -0.5f, -0.5f,  0.5f), glm::vec3(1.0f),glm::vec3(-1.0f,  0.0f,  0.0f)},
-        {glm::vec3(  -0.5f,  0.5f,  0.5f), glm::vec3(1.0f),glm::vec3(-1.0f,  0.0f,  0.0f)},
-        {glm::vec3(  0.5f,  0.5f,   0.5f), glm::vec3(1.0f),glm::vec3( 1.0f,  0.0f,  0.0f)},
-        {glm::vec3(  0.5f,  0.5f,  -0.5f), glm::vec3(1.0f),glm::vec3( 1.0f,  0.0f,  0.0f)},
-        {glm::vec3(  0.5f, -0.5f,  -0.5f), glm::vec3(1.0f),glm::vec3( 1.0f,  0.0f,  0.0f)},
-        {glm::vec3(  0.5f, -0.5f,  -0.5f), glm::vec3(1.0f),glm::vec3( 1.0f,  0.0f,  0.0f)},
-        {glm::vec3(  0.5f, -0.5f,   0.5f), glm::vec3(1.0f),glm::vec3( 1.0f,  0.0f,  0.0f)},
-        {glm::vec3(  0.5f,  0.5f,   0.5f), glm::vec3(1.0f),glm::vec3( 1.0f,  0.0f,  0.0f)},
-        {glm::vec3(  -0.5f, -0.5f, -0.5f), glm::vec3(1.0f),glm::vec3( 0.0f, -1.0f,  0.0f)},
-        {glm::vec3(  0.5f, -0.5f,  -0.5f), glm::vec3(1.0f),glm::vec3( 0.0f, -1.0f,  0.0f)},
-        {glm::vec3(  0.5f, -0.5f,   0.5f), glm::vec3(1.0f),glm::vec3( 0.0f, -1.0f,  0.0f)},
-        {glm::vec3(  0.5f, -0.5f,   0.5f), glm::vec3(1.0f),glm::vec3( 0.0f, -1.0f,  0.0f)},
-        {glm::vec3(  -0.5f, -0.5f,  0.5f), glm::vec3(1.0f),glm::vec3( 0.0f, -1.0f,  0.0f)},
-        {glm::vec3(  -0.5f, -0.5f, -0.5f), glm::vec3(1.0f),glm::vec3( 0.0f, -1.0f,  0.0f)},
-        {glm::vec3(  -0.5f,  0.5f, -0.5f), glm::vec3(1.0f),glm::vec3( 0.0f,  1.0f,  0.0f)},
-        {glm::vec3(  0.5f,  0.5f,  -0.5f), glm::vec3(1.0f),glm::vec3( 0.0f,  1.0f,  0.0f)},
-        {glm::vec3(  0.5f,  0.5f,   0.5f), glm::vec3(1.0f),glm::vec3( 0.0f,  1.0f,  0.0f)},
-        {glm::vec3(  0.5f,  0.5f,   0.5f), glm::vec3(1.0f),glm::vec3( 0.0f,  1.0f,  0.0f)},
-        {glm::vec3(  -0.5f,  0.5f,  0.5f), glm::vec3(1.0f),glm::vec3( 0.0f,  1.0f,  0.0f)},
-        {glm::vec3(  -0.5f,  0.5f, -0.5f), glm::vec3(1.0f),glm::vec3( 0.0f,  1.0f,  0.0f)}
-    };
-    std::vector<GLuint> inds;
-    auto prim = new Primitive(vertices, inds);
-    prim->move(_camera.getPosition());
-    //root.addModel(*(prim));
-    //_camera.setPosition(glm::vec3(5.f));
+    root.addModel(*(new Boiler()));
+
 }
 
 void Game::initLights() {
