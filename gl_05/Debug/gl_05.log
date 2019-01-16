@@ -1,14 +1,3 @@
-﻿  Cabin.cpp
+﻿  Game.cpp
   LINK : określono opcję /LTCG, lecz generowanie kodu nie było wymagane; usuń opcję /LTCG z wiersza polecenia konsolidatora w celu podwyższenia wydajności konsolidatora
-Primitive.obj : warning LNK4049: lokalnie zdefiniowany symbol ___glewActiveTexture został zaimportowany
-Primitive.obj : warning LNK4049: lokalnie zdefiniowany symbol ___glewBindBuffer został zaimportowany
-Primitive.obj : warning LNK4049: lokalnie zdefiniowany symbol ___glewBufferData został zaimportowany
-Primitive.obj : warning LNK4049: lokalnie zdefiniowany symbol ___glewGenBuffers został zaimportowany
-Primitive.obj : warning LNK4049: lokalnie zdefiniowany symbol ___glewEnableVertexAttribArray został zaimportowany
-Primitive.obj : warning LNK4049: lokalnie zdefiniowany symbol ___glewGetUniformLocation został zaimportowany
-Primitive.obj : warning LNK4049: lokalnie zdefiniowany symbol ___glewUniformMatrix4fv został zaimportowany
-Primitive.obj : warning LNK4049: lokalnie zdefiniowany symbol ___glewUseProgram został zaimportowany
-Primitive.obj : warning LNK4049: lokalnie zdefiniowany symbol ___glewVertexAttribPointer został zaimportowany
-Primitive.obj : warning LNK4049: lokalnie zdefiniowany symbol ___glewBindVertexArray został zaimportowany
-Primitive.obj : warning LNK4049: lokalnie zdefiniowany symbol ___glewGenVertexArrays został zaimportowany
   gl_05.vcxproj -> C:\Users\huber\source\repos\ZT3-Lokomotywa\Debug\Train.exe

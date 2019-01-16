@@ -111,7 +111,7 @@ std::vector<GLuint> Procedurals::drawCylinderIndices(GLuint startingIndex, unsig
 	cylinderIndices.push_back(accuracy);
 	cylinderIndices.push_back(1);
 
-	for (unsigned int i = accuracy + 1; i < 2 * accuracy; ++i) {
+	for (unsigned int i = accuracy + 3; i < 2 * accuracy + 1; ++i) {
 		cylinderIndices.push_back(accuracy + 2);
 		cylinderIndices.push_back(i);
 		cylinderIndices.push_back(i+1);
@@ -126,6 +126,14 @@ std::vector<GLuint> Procedurals::drawCylinderIndices(GLuint startingIndex, unsig
 		cylinderIndices.push_back(accuracy + 1 + i);
 		cylinderIndices.push_back(accuracy + 2 + i);
 	}
+
+	cylinderIndices.push_back(accuracy);
+	cylinderIndices.push_back(1);
+	cylinderIndices.push_back(2 * accuracy + 1);
+
+	cylinderIndices.push_back(1);
+	cylinderIndices.push_back(2 * accuracy + 1);
+	cylinderIndices.push_back(accuracy + 3);
 
 	return cylinderIndices;
 }

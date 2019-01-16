@@ -147,7 +147,7 @@ void Game::updateUniforms() {
     _shaders[MODELS]->setVec3f(_camera.getPosition(), "cameraPos");
     //light related, for_now_there, these should be attributes of Material or Light classes
     _shaders[MODELS]->setVec3f(_lightPos, "light.position");
-    _shaders[MODELS]->setVec3f(glm::vec3(3.0f), "light.ambient");
+    _shaders[MODELS]->setVec3f(glm::vec3(1.0f), "light.ambient");
     _shaders[MODELS]->setVec3f(glm::vec3(0.5f), "light.diffuse");
     _shaders[MODELS]->setVec3f(glm::vec3(1.0f), "light.specular");
     _shaders[MODELS]->set1f(32.f, "light.shininess");
