@@ -27,7 +27,6 @@ BlackBox::BlackBox() {
 	tempIndices = Procedurals::drawCuboidIndices(72);
 	blackBoxIndices->insert(blackBoxIndices->end(), tempIndices.begin(), tempIndices.end());
 	tempIndices = Procedurals::drawCuboidIndices(96);
-
 	blackBoxIndices->insert(blackBoxIndices->end(), tempIndices.begin(), tempIndices.end());
 
 	Primitive::_vertices = *blackBoxVertices;
