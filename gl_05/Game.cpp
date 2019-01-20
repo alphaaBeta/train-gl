@@ -4,6 +4,7 @@
 #include "Boiler.h"
 #include "Chimney.h"
 #include "Skybox.h"
+#include "BlackBox.h"
 
 void Game::initUniforms() {
     _shaders[MODELS]->setMat4fv(_ViewMatrix, "ViewMatrix");
@@ -247,6 +248,7 @@ void Game::initModels(Group &root) {
 	chimney->setOrigin(glm::vec3(7.f, 15.f, 7.f));
 	chimney->rotate(glm::vec3(0.f, 0.f, 90.f));
 	root.addModel(*chimney);
+	root.addModel(*(new BlackBox()));
 }
 
 void Game::initLights() {
