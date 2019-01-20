@@ -3,6 +3,7 @@
 #include "Cabin.h"
 #include "Boiler.h"
 #include "Chimney.h"
+#include "Skybox.h"
 
 void Game::initUniforms() {
     _shaders[MODELS]->setMat4fv(_ViewMatrix, "ViewMatrix");
@@ -118,7 +119,7 @@ void Game::update(const float &dt) {
 }
 
 void Game::render() {
-    glClearColor(0.f, 0.f, 0.f, 1.f);
+    glClearColor(0.70588f, 0.87451f, 0.97647f, 0.f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
     //Update the uniforms
@@ -214,6 +215,7 @@ void Game::initOpenGLOptions() {
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
     // myszka
     glfwSetInputMode(_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+	glFogi(GL_FOG_COORD_SRC, GL_FRAGMENT_DEPTH);
 }
 
 void Game::initMatrices() {
@@ -237,6 +239,7 @@ void Game::initShaders() {
 }
 
 void Game::initModels(Group &root) {
+	root.addModel(*(new Skybox));
     root.addModel(*(new Cabin()));
     root.addModel(*(new Boiler()));
 	Chimney *chimney = new Chimney();
