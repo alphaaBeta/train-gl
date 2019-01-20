@@ -1,142 +1,48 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="Source Files\Shader">
-      <UniqueIdentifier>{fa0c5a35-222b-4546-b045-dc3e8cff64f0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Source Files\Objects">
-      <UniqueIdentifier>{e96e7746-6a80-47ed-8fbe-ffcb99d4e480}</UniqueIdentifier>
-    </Filter>
+    <ClCompile Include="BlackBox.cpp" />
+    <ClCompile Include="Boiler.cpp" />
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Chimney.cpp" />
+    <ClCompile Include="Config.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Circle.cpp" />
+    <ClCompile Include="Cabin.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Group.cpp" />
+    <ClCompile Include="Model.cpp" />
+    <ClCompile Include="Primitive.cpp" />
+    <ClCompile Include="Procedurals.cpp" />
+    <ClCompile Include="ShaderProgram.cpp" />
+    <ClCompile Include="Skybox.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ShaderProgram.cpp">
-      <Filter>Source Files\Shader</Filter>
-    </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Config.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Primitive.cpp">
-      <Filter>Source Files\Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="Group.cpp">
-      <Filter>Source Files\Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="Model.cpp">
-      <Filter>Source Files\Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="Circle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Cabin.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Procedurals.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Boiler.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Chimney.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Skybox.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BlackBox.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
+    <ClInclude Include="BlackBox.h" />
+    <ClInclude Include="Boiler.h" />
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="Chimney.h" />
+    <ClInclude Include="Config.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="Group.h" />
+    <ClInclude Include="Circle.h" />
+    <ClInclude Include="Cabin.h" />
+    <ClInclude Include="Model.h" />
+    <ClInclude Include="Primitive.h" />
+    <ClInclude Include="Procedurals.h" />
+    <ClInclude Include="ShaderProgram.h" />
+    <ClInclude Include="Skybox.h" />
+    <ClInclude Include="Texture.h" />
+    <ClInclude Include="Vertex.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Shader.Vertex">
-      <Filter>Source Files\Shader</Filter>
-    </None>
-    <None Include="Shader.Fragment">
-      <Filter>Source Files\Shader</Filter>
-    </None>
-    <None Include="Light.Vertex">
-      <Filter>Source Files\Shader</Filter>
-    </None>
-    <None Include="Light.Fragment">
-      <Filter>Source Files\Shader</Filter>
-    </None>
+    <Image Include="iipw.png" />
+    <Image Include="weiti.png" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="iipw.png">
-      <Filter>Source Files\Resource Files</Filter>
-    </Image>
-    <Image Include="weiti.png">
-      <Filter>Source Files\Resource Files</Filter>
-    </Image>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="ShaderProgram.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Vertex.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Texture.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Config.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Primitive.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Group.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Model.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Circle.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Cabin.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Procedurals.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Boiler.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Chimney.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BlackBox.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Skybox.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <None Include="Light.Fragment" />
+    <None Include="Light.Vertex" />
+    <None Include="Shader.Fragment" />
+    <None Include="Shader.Vertex" />
   </ItemGroup>
 </Project>

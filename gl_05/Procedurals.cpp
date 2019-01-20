@@ -142,3 +142,35 @@ std::vector<GLuint> Procedurals::drawCylinderIndices(GLuint startingIndex, unsig
 	return cylinderIndices;
 }
 
+std::vector<Vertex> Procedurals::drawSlouchedCuboidVertices(float positionX, float positionY, float positionZ, float width, float height, float length) {
+	std::vector<Vertex> slouchedCuboidVertices = {
+		{glm::vec3(positionX + 1.f, positionY + height, positionZ),						glm::vec3(1.f, 0.f, 0.f),			glm::vec3(0.f, 1.f, 0.f)},//xz
+		{glm::vec3(positionX + 1.f, positionY + height, positionZ),						glm::vec3(1.f, 0.f, 0.f),			glm::vec3(0.f, 0.f, -1.f)},//xy
+		{glm::vec3(positionX + 1.f, positionY + height, positionZ),						glm::vec3(1.f, 0.f, 0.f),			glm::vec3(-1.f, 0.f, 0.f)},//yz
+		{glm::vec3(positionX + 1.f, positionY + height, positionZ + length),			glm::vec3(1.f, 0.f, 0.f),			glm::vec3(0.f, 1.f, 0.f)},//xz
+		{glm::vec3(positionX + 1.f, positionY + height, positionZ + length),			glm::vec3(1.f, 0.f, 0.f),			glm::vec3(0.f, 0.f, 1.f)},//xy
+		{glm::vec3(positionX + 1.f, positionY + height, positionZ + length),			glm::vec3(1.f, 0.f, 0.f),			glm::vec3(-1.f, 0.f, 0.f)},//yz
+		{glm::vec3(positionX + width + 1.f, positionY + height, positionZ),				glm::vec3(1.f, 0.f, 0.f),			glm::vec3(0.f, 1.f, 0.f)},//xz
+		{glm::vec3(positionX + width + 1.f, positionY + height, positionZ),				glm::vec3(1.f, 0.f, 0.f),			glm::vec3(0.f, 0.f, -1.f)},//xy
+		{glm::vec3(positionX + width + 1.f, positionY + height, positionZ),				glm::vec3(1.f, 0.f, 0.f),			glm::vec3(1.f, 0.f, 0.f)},//yz
+		{glm::vec3(positionX + width + 1.f, positionY + height, positionZ + length),	glm::vec3(1.f, 0.f, 0.f),			glm::vec3(0.f, 1.f, 0.f)},//xz
+		{glm::vec3(positionX + width + 1.f, positionY + height, positionZ + length),	glm::vec3(1.f, 0.f, 0.f),			glm::vec3(0.f, 0.f, 1.f)},//xy
+		{glm::vec3(positionX + width + 1.f, positionY + height, positionZ + length),	glm::vec3(1.f, 0.f, 0.f),			glm::vec3(1.f, 0.f, 0.f)},//yz
+		{glm::vec3(positionX, positionY, positionZ),									glm::vec3(1.f, 0.f, 0.f),			glm::vec3(0.f, -1.f, 0.f)},//xz
+		{glm::vec3(positionX, positionY, positionZ),									glm::vec3(1.f, 0.f, 0.f),			glm::vec3(0.f, 0.f, -1.f)},//xy
+		{glm::vec3(positionX, positionY, positionZ),									glm::vec3(1.f, 0.f, 0.f),			glm::vec3(-1.f, 0.f, 0.f)},//yz
+		{glm::vec3(positionX, positionY, positionZ + length),							glm::vec3(1.f, 0.f, 0.f),			glm::vec3(0.f, -1.f, 0.f)},//xz
+		{glm::vec3(positionX, positionY, positionZ + length),							glm::vec3(1.f, 0.f, 0.f),			glm::vec3(0.f, 0.f, 1.f)},//xy
+		{glm::vec3(positionX, positionY, positionZ + length),							glm::vec3(1.f, 0.f, 0.f),			glm::vec3(-1.f, 0.f, 0.f)},//yz
+		{glm::vec3(positionX + width, positionY, positionZ),							glm::vec3(1.f, 0.f, 0.f),			glm::vec3(0.f, -1.f, 0.f)},//xz
+		{glm::vec3(positionX + width, positionY, positionZ),							glm::vec3(1.f, 0.f, 0.f),			glm::vec3(0.f, 0.f, -1.f)},//xy
+		{glm::vec3(positionX + width, positionY, positionZ),							glm::vec3(1.f, 0.f, 0.f),			glm::vec3(1.f, 0.f, 0.f)},//yz
+		{glm::vec3(positionX + width, positionY, positionZ + length),					glm::vec3(1.f, 0.f, 0.f),			glm::vec3(0.f, -1.f, 0.f)},//xz
+		{glm::vec3(positionX + width, positionY, positionZ + length),					glm::vec3(1.f, 0.f, 0.f),			glm::vec3(0.f, 0.f, 1.f)},//xy
+		{glm::vec3(positionX + width, positionY, positionZ + length),					glm::vec3(1.f, 0.f, 0.f),			glm::vec3(1.f, 0.f, 0.f)},//yz
+	};
+
+	return slouchedCuboidVertices;
+}
+
+

@@ -7,6 +7,5 @@
 class Cabin : public Primitive {
   public:
     Cabin();
-    ~Cabin();
 };
 

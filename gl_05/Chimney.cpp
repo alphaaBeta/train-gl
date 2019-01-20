@@ -27,8 +27,3 @@ Chimney::Chimney() {
 	Primitive::initVAO();
 	updateModelMatrix();
 }
-
-
-Chimney::~Chimney()
-{
-}

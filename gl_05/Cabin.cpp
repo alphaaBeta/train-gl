@@ -76,11 +76,3 @@ Cabin::Cabin()
 	updateModelMatrix();
 
 }
-
-
-
-
-Cabin::~Cabin()
-{
-
-}
