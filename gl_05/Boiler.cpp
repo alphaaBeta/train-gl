@@ -17,8 +17,3 @@ Boiler::Boiler() {
 	Primitive::initVAO();
 	updateModelMatrix();
 }
-
-
-Boiler::~Boiler()
-{
-}

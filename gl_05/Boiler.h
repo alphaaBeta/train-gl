@@ -6,6 +6,5 @@ class Boiler : public Primitive
 {
 public:
 	Boiler();
-	~Boiler();
 };
 
