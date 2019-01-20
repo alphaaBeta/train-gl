@@ -16,11 +16,20 @@ struct Light {
 in vec3 vs_position;
 in vec3 vs_color;
 in vec3 vs_normal;
+in vec4 viewSpace;
 
 out vec4 fs_color;
 
 uniform vec3 cameraPos;
 uniform Light light;
+
+//0 linear; 1 exponential; 2 exponential square
+uniform int fogSelector;
+//0 plane based; 1 range based
+uniform int depthFog;
+
+const vec3 fogColor = vec3(0.70588f, 0.87451f, 0.97647f);
+const float FogDensity = 0.05;
 
 void main()
 {
@@ -36,15 +45,59 @@ void main()
 	float spec = pow(max(dot(cameraPos, reflectDir), 0.f), light.shininess);
 	vec3 specular = light.specular * spec * vs_color.rgb;
 
-	float distance = length(light.position - vs_position);
+	float distance = length(light.position - vs_position) * 2;
     float attenuation = 1.0 / (light.constant + light.linear * distance + light.quadratic * (distance * distance));
 
 	ambient  *= attenuation;  
     diffuse   *= attenuation;
     specular *= attenuation;
 
-	vec3 result = ambient + diffuse + specular;
+	vec3 lightColor = ambient + diffuse + specular;
+	vec3 result = vec3(0, 0, 0);
+
+	//distance
+	float dist = 0;
+	float fogFactor = 0;
+
+	//Fog type
+	if(depthFog == 0)//select plane based vs range based
+	{
+	  //plane based
+	  dist = abs(viewSpace.z);
+	  //dist = (gl_FragCoord.z / gl_FragCoord.w);
+	}
+	else
+	{
+	   //range based
+	   dist = length(viewSpace);
+	}
+
+	if(fogSelector == 0)//linear fog
+	{
+	   // 20 - fog starts; 80 - fog ends
+	   fogFactor = (80 - dist)/(80 - 20);
+	   fogFactor = clamp( fogFactor, 0.0, 1.0 );
+ 
+	   //if you inverse color in glsl mix function you have to
+	   //put 1.0 - fogFactor
+	   result = mix(fogColor, lightColor, fogFactor);
+	}
+	else if( fogSelector == 1)// exponential fog
+	{
+		fogFactor = 1.0 /exp(dist * FogDensity);
+		fogFactor = clamp( fogFactor, 0.0, 1.0 );
+ 
+		result = mix(fogColor, lightColor, fogFactor);
+	}
+	else if( fogSelector == 2)
+	{
+	   fogFactor = 1.0 /exp( (dist * FogDensity)* (dist * FogDensity));
+	   fogFactor = clamp( fogFactor, 0.0, 1.0 );
+ 
+	   result = mix(fogColor, lightColor, fogFactor);
+	}
+	
+
 	fs_color = vec4(result, 1.f);
 	//    fs_color = vec4(1.0);
-
 }

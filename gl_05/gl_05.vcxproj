@@ -99,6 +99,7 @@
     <ClCompile Include="Primitive.cpp" />
     <ClCompile Include="Procedurals.cpp" />
     <ClCompile Include="ShaderProgram.cpp" />
+    <ClCompile Include="Skybox.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Light.Fragment" />
@@ -123,6 +124,7 @@
     <ClInclude Include="Primitive.h" />
     <ClInclude Include="Procedurals.h" />
     <ClInclude Include="ShaderProgram.h" />
+    <ClInclude Include="Skybox.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Vertex.h" />
   </ItemGroup>
