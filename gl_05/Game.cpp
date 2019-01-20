@@ -240,8 +240,9 @@ void Game::initModels(Group &root) {
     root.addModel(*(new Cabin()));
     root.addModel(*(new Boiler()));
 	Chimney *chimney = new Chimney();
-	chimney->rotate(glm::vec3(0.f, 0.f, 90.f));
 	chimney->move(glm::vec3(7.f, 15.f, 7.f));
+	chimney->setOrigin(glm::vec3(7.f, 15.f, 7.f));
+	chimney->rotate(glm::vec3(0.f, 0.f, 90.f));
 	root.addModel(*chimney);
 }
 

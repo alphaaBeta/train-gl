@@ -141,3 +141,4 @@ std::vector<GLuint> Procedurals::drawCylinderIndices(GLuint startingIndex, unsig
 
 	return cylinderIndices;
 }
+

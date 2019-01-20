@@ -32,7 +32,7 @@ void Model::setPos(const glm::vec3 pos) {
 }
 
 void Model::move(const glm::vec3 pos) {
-	_pos += glm::vec3(pos[1], -pos[0], pos[2]);
+	_pos += pos;
 }
 
 void Model::setOrigin(const glm::vec3 origin) {
