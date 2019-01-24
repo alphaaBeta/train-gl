@@ -12,14 +12,14 @@ void Game::initUniforms() {
     _shaders[MODELS]->setMat4fv(_ProjMatrix, "ProjMatrix");
 }
 
-Game::Game(const char *title, const int width, const int height, bool resizable = false) : W_WIDTH(width), W_HEIGHT(height), _camera(glm::vec3(19.f, 26.f, 10.f), glm::vec3(0.f, 1.f, 0.f)) {
+Game::Game(const char *title, const int width, const int height, bool resizable = false) : W_WIDTH(width), W_HEIGHT(height), _camera(glm::vec3(-1.f, 12.5f, 7.f), glm::vec3(0.f, 1.f, 0.f)) {
     _window = nullptr;
     _frameBuffWidth = W_WIDTH;
     _frameBuffHeight = W_HEIGHT;
 
     _camPos = glm::vec3(19.f, 26.f, 10.f);
     _worldUp = glm::vec3(0.f, 1.f, 0.f);
-    _camFront = glm::vec3(0.f, 0.f, -1.f);
+    _camFront = glm::vec3(1.f, 0.f, 0.f);
 
     _fov = 45.f;
     _nearPlane = 0.1f;
@@ -251,8 +251,8 @@ void Game::initModels(Group &root) {
 	root.addModel(*chimney);
 	root.addModel(*(new BlackBox()));
 	Spotlight *spotlight = new Spotlight();
-	spotlight->move(glm::vec3(4.f, 12.5f, 6.5));
-	spotlight->setOrigin(glm::vec3(4.f, 12.5f, 6.5));
+	spotlight->move(glm::vec3(4.f, 12.5f, 7.f));
+	spotlight->setOrigin(glm::vec3(4.f, 12.5f, 7.f));
 	spotlight->rotate(glm::vec3(0.f, 0.f, 180.f));
 	root.addModel(*spotlight);
 	

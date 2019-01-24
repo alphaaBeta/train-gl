@@ -11,7 +11,7 @@ Spotlight::Spotlight(){
 	spotlightVertices->insert(spotlightVertices->end(), tempVertices.begin(), tempVertices.end());*/
 
 	*spotlightVertices = Procedurals::drawCylinderVertices(0.f, 0.f, 0.f, 0.5f, 1.f, 1.f, 30);
-	tempVertices = Procedurals::drawCylinderVertices(0.5f, 0.f, 0.f, 0.1f, 1.f, 0.f, 30);
+	tempVertices = Procedurals::drawCylinderVertices(0.5f, 0.f, 0.f, 0.1f, 1.f, 0.5f, 30);
 	spotlightVertices->insert(spotlightVertices->end(), tempVertices.begin(), tempVertices.end());
 
 	std::vector<GLuint> *spotlightIndices = new std::vector<GLuint>();

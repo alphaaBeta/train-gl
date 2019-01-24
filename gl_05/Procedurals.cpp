@@ -81,18 +81,21 @@ std::vector<GLuint> Procedurals::drawRectangleIndices(GLuint startingIndex) {
 }
 
 std::vector<Vertex> Procedurals::drawCylinderVertices(float positionX, float positionY, float positionZ, float height, float radius, float baseRatio, unsigned int accuracy) {
+	float sinAlpha = radius*(1 - baseRatio) / (sqrt(pow(height,2) + pow((radius * (1 - baseRatio)),2)));
+	float cosAlpha = height / (sqrt(pow(height, 2) + pow((radius * (1 - baseRatio)), 2)));
+
 	std::vector<Vertex> cylinderVertices = {
-		{glm::vec3(positionX, positionY, positionZ),							glm::vec3(1.f, 0.f, 0.f),			glm::vec3(-1.f, 0.f, 0.f)}
+		{glm::vec3(positionX, positionY, positionZ),																																		glm::vec3(1.f, 0.f, 0.f),		glm::vec3(-1.f, 0.f, 0.f)}
 	};
 
 	for (float degree = 0; degree < 360; degree += 360.f/accuracy) {
-		cylinderVertices.push_back({glm::vec3(positionX, positionY + radius * sin(degree * PI/180.f), positionZ + radius * cos(degree * PI/180.f)), glm::vec3(1.f, 0.f, 0.f), glm::vec3(0.f, radius * sin(degree * PI / 180.f), radius * cos(degree * PI / 180.f))});
+		cylinderVertices.push_back({glm::vec3(positionX, positionY + radius * sin(degree * PI/180.f), positionZ + radius * cos(degree * PI/180.f)),											glm::vec3(1.f, 0.f, 0.f),		glm::vec3(cosAlpha, sin(degree * PI / 180.f) * sinAlpha, cos(degree * PI / 180.f) * sinAlpha)});
 	};
 
-	cylinderVertices.push_back({glm::vec3(positionX + height, positionY, positionZ),			glm::vec3(1.f, 0.f, 0.f),			glm::vec3(1.f, 0.f, 0.f)});
+	cylinderVertices.push_back({glm::vec3(positionX + height, positionY, positionZ),																										glm::vec3(1.f, 0.f, 0.f),		glm::vec3(1.f, 0.f, 0.f)});
 
 	for (float degree = 0; degree < 360; degree += 360.f/accuracy) {
-		cylinderVertices.push_back({glm::vec3(positionX + height, positionY + (radius*baseRatio) * sin(degree * PI / 180.f), positionZ  + (radius*baseRatio) * cos(degree * PI / 180.f)), glm::vec3(1.f, 0.f, 0.f), glm::vec3(0.f, (radius*baseRatio) * sin(degree * PI / 180.f), (radius*baseRatio) * cos(degree * PI / 180.f)) });
+		cylinderVertices.push_back({glm::vec3(positionX + height, positionY + (radius*baseRatio) * sin(degree * PI / 180.f), positionZ  + (radius*baseRatio) * cos(degree * PI / 180.f)),	glm::vec3(1.f, 0.f, 0.f),		glm::vec3(cosAlpha, sin(degree * PI / 180.f) * sinAlpha, cos(degree * PI / 180.f) * sinAlpha)});
 	};
 
 	return cylinderVertices;
