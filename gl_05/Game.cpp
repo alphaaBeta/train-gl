@@ -5,6 +5,7 @@
 #include "Chimney.h"
 #include "Skybox.h"
 #include "BlackBox.h"
+#include "Spotlight.h"
 
 void Game::initUniforms() {
     _shaders[MODELS]->setMat4fv(_ViewMatrix, "ViewMatrix");
@@ -249,6 +250,12 @@ void Game::initModels(Group &root) {
 	chimney->rotate(glm::vec3(0.f, 0.f, 90.f));
 	root.addModel(*chimney);
 	root.addModel(*(new BlackBox()));
+	Spotlight *spotlight = new Spotlight();
+	spotlight->move(glm::vec3(4.f, 12.5f, 6.5));
+	spotlight->setOrigin(glm::vec3(4.f, 12.5f, 6.5));
+	spotlight->rotate(glm::vec3(0.f, 0.f, 180.f));
+	root.addModel(*spotlight);
+	
 }
 
 void Game::initLights() {

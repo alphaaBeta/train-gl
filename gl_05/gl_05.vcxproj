@@ -101,6 +101,7 @@
     <ClCompile Include="Procedurals.cpp" />
     <ClCompile Include="ShaderProgram.cpp" />
     <ClCompile Include="Skybox.cpp" />
+    <ClCompile Include="Spotlight.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Light.Fragment" />
@@ -127,6 +128,7 @@
     <ClInclude Include="Procedurals.h" />
     <ClInclude Include="ShaderProgram.h" />
     <ClInclude Include="Skybox.h" />
+    <ClInclude Include="Spotlight.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Vertex.h" />
   </ItemGroup>
