@@ -74,7 +74,7 @@ std::vector<Vertex> Procedurals::drawRectangleVertices(float positionX, float po
 std::vector<GLuint> Procedurals::drawRectangleIndices(GLuint startingIndex) {
 	std::vector<GLuint> rectangleIndices = {
 		startingIndex, startingIndex + 1, startingIndex + 2,
-		startingIndex + 1, startingIndex + 2, startingIndex + 3,
+		startingIndex + 1, startingIndex + 2, startingIndex + 3
 	};
 
 	return rectangleIndices;
@@ -174,6 +174,78 @@ std::vector<Vertex> Procedurals::drawSlouchedCuboidVertices(float positionX, flo
 	};
 
 	return slouchedCuboidVertices;
+}
+
+std::vector<Vertex> Procedurals::drawTriangularPrismVertices(float positionX, float positionY, float positionZ, float width, float height, float length) {
+	std::vector<Vertex> triangularPrismVertices = {
+	{glm::vec3(positionX, positionY, positionZ),													glm::vec3(1.f, 0.f, 0.f),			glm::vec3(0.f, 0.707f, -0.707f)},//
+	{glm::vec3(positionX, positionY, positionZ),													glm::vec3(1.f, 0.f, 0.f),			glm::vec3(0.f, 0.f, -1.f)},//
+	{glm::vec3(positionX, positionY, positionZ),													glm::vec3(1.f, 0.f, 0.f),			glm::vec3(0.f, -1.f, 0.f)},//
+	{glm::vec3(positionX + width, positionY, positionZ),											glm::vec3(1.f, 0.f, 0.f),			glm::vec3(0.f, 0.f, -1.f)},//
+	{glm::vec3(positionX + width, positionY, positionZ),											glm::vec3(1.f, 0.f, 0.f),			glm::vec3(1.f, 0.f, 0.f)},//
+	{glm::vec3(positionX + width, positionY, positionZ),											glm::vec3(1.f, 0.f, 0.f),			glm::vec3(0.f, -1.f, 0.f)},//
+	{glm::vec3(positionX, positionY, positionZ + length),											glm::vec3(1.f, 0.f, 0.f),			glm::vec3(0.f, 0.707f, -0.707f)},//
+	{glm::vec3(positionX, positionY, positionZ + length),											glm::vec3(1.f, 0.f, 0.f),			glm::vec3(0.f, 0.f, 1.f)},//
+	{glm::vec3(positionX, positionY, positionZ + length),											glm::vec3(1.f, 0.f, 0.f),			glm::vec3(0.f, -1.f, 0.f)},//
+	{glm::vec3(positionX + width, positionY, positionZ + length),									glm::vec3(1.f, 0.f, 0.f),			glm::vec3(0.f, 0.f, 1.f)},//
+	{glm::vec3(positionX + width, positionY, positionZ + length),									glm::vec3(1.f, 0.f, 0.f),			glm::vec3(1.f, 0.f, 0.f)},//
+	{glm::vec3(positionX + width, positionY, positionZ + length),									glm::vec3(1.f, 0.f, 0.f),			glm::vec3(0.f, -1.f, 0.f)},//
+	{glm::vec3(positionX + width, positionY + height, positionZ),									glm::vec3(1.f, 0.f, 0.f),			glm::vec3(0.f, 0.707f, -0.707f)},//
+	{glm::vec3(positionX + width, positionY + height, positionZ),									glm::vec3(1.f, 0.f, 0.f),			glm::vec3(1.f, 0.f, 0.f)},//
+	{glm::vec3(positionX + width, positionY + height, positionZ),									glm::vec3(1.f, 0.f, 0.f),			glm::vec3(0.f, 0.f, -1.f)},//
+	{glm::vec3(positionX + width, positionY + height, positionZ + length),							glm::vec3(1.f, 0.f, 0.f),			glm::vec3(0.f, 0.707f, -0.707f)},//
+	{glm::vec3(positionX + width, positionY + height, positionZ + length),							glm::vec3(1.f, 0.f, 0.f),			glm::vec3(1.f, 0.f, 0.f)},//
+	{glm::vec3(positionX + width, positionY + height, positionZ + length),							glm::vec3(1.f, 0.f, 0.f),			glm::vec3(0.f, 0.f, 1.f)},//
+	};
+
+	return triangularPrismVertices;
+}
+
+std::vector<GLuint> Procedurals::drawTriangularPrismIndices(GLuint startingIndex) {
+	std::vector<GLuint> triangularPrismIndices = {
+	startingIndex, startingIndex + 6, startingIndex + 12,
+	startingIndex + 6, startingIndex + 12, startingIndex + 15,
+	startingIndex + 1, startingIndex + 3, startingIndex + 14,
+	startingIndex + 7, startingIndex + 9, startingIndex + 17,
+	startingIndex + 4, startingIndex + 10, startingIndex + 13,
+	startingIndex + 10, startingIndex + 13, startingIndex + 16,
+	startingIndex + 2, startingIndex + 8, startingIndex + 11,
+	startingIndex + 2, startingIndex + 5, startingIndex + 11
+	};
+
+	return triangularPrismIndices;
+}
+
+std::vector<Vertex> Procedurals::drawTriangleBasedPyramidVertices(float positionX, float positionY, float positionZ, float width, float height, float length)
+{
+	std::vector<Vertex> triangleBasedPyramidVertices = {
+	{glm::vec3(positionX, positionY, positionZ),													glm::vec3(1.f, 0.f, 0.f),			glm::vec3(-0.577f, 0.577f, 0.816f)},//
+	{glm::vec3(positionX, positionY, positionZ),													glm::vec3(1.f, 0.f, 0.f),			glm::vec3(0.f, -1.f, 0.f)},//
+	{glm::vec3(positionX, positionY, positionZ),													glm::vec3(1.f, 0.f, 0.f),			glm::vec3(0.f, 0.f, -1.f)},//
+	{glm::vec3(positionX + width, positionY, positionZ),											glm::vec3(1.f, 0.f, 0.f),			glm::vec3(0.f, 0.f, -1.f)},//
+	{glm::vec3(positionX + width, positionY, positionZ),											glm::vec3(1.f, 0.f, 0.f),			glm::vec3(0.f, -1.f, 0.f)},//
+	{glm::vec3(positionX + width, positionY, positionZ),											glm::vec3(1.f, 0.f, 0.f),			glm::vec3(1.f, 0.f, 0.f)},//
+	{glm::vec3(positionX + width, positionY, positionZ + length),									glm::vec3(1.f, 0.f, 0.f),			glm::vec3(-0.577f, 0.577f, 0.816f)},//
+	{glm::vec3(positionX + width, positionY, positionZ + length),									glm::vec3(1.f, 0.f, 0.f),			glm::vec3(0.f, -1.f, 0.f)},//
+	{glm::vec3(positionX + width, positionY, positionZ + length),									glm::vec3(1.f, 0.f, 0.f),			glm::vec3(1.f, 0.f, 0.f)},//
+	{glm::vec3(positionX + width, positionY + height, positionZ),							glm::vec3(1.f, 0.f, 0.f),			glm::vec3(-0.576f, 0.576f, 0.816f)},//
+	{glm::vec3(positionX + width, positionY + height, positionZ),							glm::vec3(1.f, 0.f, 0.f),			glm::vec3(0.f, 0.f, -1.f)},//
+	{glm::vec3(positionX + width, positionY + height, positionZ),							glm::vec3(1.f, 0.f, 0.f),			glm::vec3(1.f, 0.f, 0.f)},//
+	};
+
+	return triangleBasedPyramidVertices;
+}
+
+std::vector<GLuint> Procedurals::drawTriangleBasedPyramidIndices(GLuint startingIndex)
+{
+	std::vector<GLuint> triangleBasedPyramidIndices = {
+	startingIndex, startingIndex + 6, startingIndex + 9,
+	startingIndex + 1, startingIndex + 4, startingIndex + 7,
+	startingIndex + 5, startingIndex + 8, startingIndex + 11,
+	startingIndex + 2, startingIndex + 3, startingIndex + 10,
+	};
+
+	return triangleBasedPyramidIndices;
 }
 
 

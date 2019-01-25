@@ -17,6 +17,9 @@
     <ClCompile Include="ShaderProgram.cpp" />
     <ClCompile Include="Skybox.cpp" />
     <ClCompile Include="Spotlight.cpp" />
+    <ClCompile Include="chassisBox.cpp" />
+    <ClCompile Include="FrontBuffer.cpp" />
+    <ClCompile Include="SideBuffer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BlackBox.h" />
@@ -36,6 +39,9 @@
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Vertex.h" />
     <ClInclude Include="Spotlight.h" />
+    <ClInclude Include="chassisBox.h" />
+    <ClInclude Include="FrontBuffer.h" />
+    <ClInclude Include="SideBuffer.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="iipw.png" />

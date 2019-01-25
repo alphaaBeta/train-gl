@@ -6,6 +6,9 @@
 #include "Skybox.h"
 #include "BlackBox.h"
 #include "Spotlight.h"
+#include "chassisBox.h"
+#include "FrontBuffer.h"
+#include "SideBuffer.h"
 
 void Game::initUniforms() {
     _shaders[MODELS]->setMat4fv(_ViewMatrix, "ViewMatrix");
@@ -255,7 +258,19 @@ void Game::initModels(Group &root) {
 	spotlight->setOrigin(glm::vec3(4.f, 12.5f, 7.f));
 	spotlight->rotate(glm::vec3(0.f, 0.f, 180.f));
 	root.addModel(*spotlight);
-	
+	root.addModel(*(new ChassisBox()));
+	root.addModel(*(new FrontBuffer()));
+	SideBuffer *leftBuffer = new SideBuffer();
+	leftBuffer->move(glm::vec3(2.f, 2.5f, 1.5f));
+	leftBuffer->setOrigin(glm::vec3(2.f, 2.5f, 1.5f));
+	leftBuffer->rotate(glm::vec3(-90.f, 0.f, 0.f));
+	root.addModel(*leftBuffer);
+	SideBuffer *rightBuffer = new SideBuffer();
+	rightBuffer->move(glm::vec3(4.f, 2.5f, 14.5f));
+	rightBuffer->setOrigin(glm::vec3(4.f, 2.5f, 14.5f));
+	rightBuffer->rotate(glm::vec3(-90.f, 0.f, 90.f));
+	root.addModel(*rightBuffer);
+
 }
 
 void Game::initLights() {
