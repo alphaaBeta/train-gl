@@ -11,13 +11,13 @@ BlackBox::BlackBox() {
 	blackBoxVertices->insert(blackBoxVertices->end(), tempVertices.begin(), tempVertices.end());
 	tempVertices = Procedurals::drawCuboidVertices(21.f, 7.f, 12.5f, 5.f, 3.5f, 1.f);
 	blackBoxVertices->insert(blackBoxVertices->end(), tempVertices.begin(), tempVertices.end());
-	tempVertices = Procedurals::drawSlouchedCuboidVertices(10.f, 5.5f, 12.5f, 2.f, 1.5f, 1.f);
+	tempVertices = Procedurals::drawSlouchedCuboidVertices(8.f, 5.5f, 12.5f, 5.f, 1.5f, 1.f);
 	blackBoxVertices->insert(blackBoxVertices->end(), tempVertices.begin(), tempVertices.end());
-	tempVertices = Procedurals::drawSlouchedCuboidVertices(22.5f, 5.5f, 12.5f, 2.f, 1.5f, 1.f);
+	tempVertices = Procedurals::drawSlouchedCuboidVertices(20.f, 5.5f, 12.5f, 5.f, 1.5f, 1.f);
 	blackBoxVertices->insert(blackBoxVertices->end(), tempVertices.begin(), tempVertices.end());
-	tempVertices = Procedurals::drawSlouchedCuboidVertices(10.f, 5.5f, 0.5f, 2.f, 1.5f, 1.f);
+	tempVertices = Procedurals::drawSlouchedCuboidVertices(8.f, 5.5f, 0.5f, 5.f, 1.5f, 1.f);
 	blackBoxVertices->insert(blackBoxVertices->end(), tempVertices.begin(), tempVertices.end());
-	tempVertices = Procedurals::drawSlouchedCuboidVertices(22.5f, 5.5f, 0.5f, 2.f, 1.5f, 1.f);
+	tempVertices = Procedurals::drawSlouchedCuboidVertices(20.f, 5.5f, 0.5f, 5.f, 1.5f, 1.f);
 	blackBoxVertices->insert(blackBoxVertices->end(), tempVertices.begin(), tempVertices.end());
 
 	std::vector<GLuint> *blackBoxIndices = new std::vector<GLuint>();
@@ -45,5 +45,3 @@ BlackBox::BlackBox() {
 }
 
 
-BlackBox::~BlackBox() {
-}

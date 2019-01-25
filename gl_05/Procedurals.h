@@ -21,6 +21,9 @@ class Procedurals {
 	static std::vector<GLuint> drawTriangularPrismIndices(GLuint startingIndex);
 	static std::vector<Vertex> drawTriangleBasedPyramidVertices(float positionX, float positionY, float positionZ, float width, float height, float length);
 	static std::vector<GLuint> drawTriangleBasedPyramidIndices(GLuint startingIndex);
+	static std::vector<Vertex> drawBaselessCylinderVertices(float positionX, float positionY, float positionZ, float height, float radius, float baseRatio, unsigned int accuracy);
+	static std::vector<GLuint> drawBaselessCylinderIndices(GLuint startingIndex, unsigned int accuracy);
+
 };
 
 

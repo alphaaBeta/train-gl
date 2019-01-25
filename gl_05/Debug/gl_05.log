@@ -1,3 +1,7 @@
-﻿  Game.cpp
+﻿  Cabin.cpp
+  Game.cpp
+  Main.cpp
+  Piston.cpp
+  Generowanie kodu...
   LINK : określono opcję /LTCG, lecz generowanie kodu nie było wymagane; usuń opcję /LTCG z wiersza polecenia konsolidatora w celu podwyższenia wydajności konsolidatora
   gl_05.vcxproj -> C:\Users\huber\source\repos\ZT3-Lokomotywa\Debug\Train.exe

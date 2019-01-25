@@ -20,6 +20,11 @@
     <ClCompile Include="chassisBox.cpp" />
     <ClCompile Include="FrontBuffer.cpp" />
     <ClCompile Include="SideBuffer.cpp" />
+    <ClCompile Include="Bumpers.cpp" />
+    <ClCompile Include="Piston.cpp" />
+    <ClCompile Include="Wheel.cpp" />
+    <ClCompile Include="WheelBox.cpp" />
+    <ClCompile Include="WheelConnectors.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BlackBox.h" />
@@ -42,6 +47,11 @@
     <ClInclude Include="chassisBox.h" />
     <ClInclude Include="FrontBuffer.h" />
     <ClInclude Include="SideBuffer.h" />
+    <ClInclude Include="Bumpers.h" />
+    <ClInclude Include="Piston.h" />
+    <ClInclude Include="Wheel.h" />
+    <ClInclude Include="WheelBox.h" />
+    <ClInclude Include="WheelConnectors.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="iipw.png" />

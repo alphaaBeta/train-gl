@@ -13,6 +13,23 @@
 #include "Texture.h"
 #include "Camera.h"
 #include "Primitive.h"
+#include "Group.h"
+#include "Cabin.h"
+#include "Boiler.h"
+#include "Chimney.h"
+#include "Skybox.h"
+#include "BlackBox.h"
+#include "Spotlight.h"
+#include "chassisBox.h"
+#include "FrontBuffer.h"
+#include "SideBuffer.h"
+#include "Bumpers.h"
+#include "Piston.h"
+#include "Wheel.h"
+#include "WheelBox.h"
+#include "WheelConnectors.h"
+
+#define PI 3.14159265359
 
 enum {LIGHT = 0, MODELS};
 
@@ -69,8 +86,13 @@ class Game {
     void initShaders();
     //void initTextures();
     void initModels(Group &root);
-    void initLights();
+	void initHighPistons(Group &higherPistons);
+	void initWheels(Group &rightFrontWheel, Group &leftFrontWheel, Group &rightMiddleFirstWheel, Group &leftMiddleFirstWheel, Group &rightMiddleSecondWheel, Group &leftMiddleSecondWheel, Group &rightBackWheel, Group &leftBackWheel);
+	void initWheelConnectors(Group &wheelConnectors);
+	void initLights();
     void initUniforms();
+
+	float wheelConnectorDegree = 0.f;
 
   public:
     Game(const char *title, const int width, const int height, bool resizable);

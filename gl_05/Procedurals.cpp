@@ -248,4 +248,47 @@ std::vector<GLuint> Procedurals::drawTriangleBasedPyramidIndices(GLuint starting
 	return triangleBasedPyramidIndices;
 }
 
+std::vector<Vertex> Procedurals::drawBaselessCylinderVertices(float positionX, float positionY, float positionZ, float height, float radius, float baseRatio, unsigned int accuracy)
+{
+	float sinAlpha = radius * (1 - baseRatio) / (sqrt(pow(height, 2) + pow((radius * (1 - baseRatio)), 2)));
+	float cosAlpha = height / (sqrt(pow(height, 2) + pow((radius * (1 - baseRatio)), 2)));
+
+	std::vector<Vertex> baselessCylinderVertices = {};
+
+	for (float degree = 0; degree < 360; degree += 360.f / accuracy) {
+		baselessCylinderVertices.push_back({ glm::vec3(positionX, positionY + radius * sin(degree * PI / 180.f), positionZ + radius * cos(degree * PI / 180.f)),											glm::vec3(1.f, 0.f, 0.f),		glm::vec3(cosAlpha, sin(degree * PI / 180.f) * sinAlpha, cos(degree * PI / 180.f) * sinAlpha) });
+	};
+
+	for (float degree = 0; degree < 360; degree += 360.f / accuracy) {
+		baselessCylinderVertices.push_back({ glm::vec3(positionX + height, positionY + (radius*baseRatio) * sin(degree * PI / 180.f), positionZ + (radius*baseRatio) * cos(degree * PI / 180.f)),	glm::vec3(1.f, 0.f, 0.f),		glm::vec3(cosAlpha, sin(degree * PI / 180.f) * sinAlpha, cos(degree * PI / 180.f) * sinAlpha) });
+	};
+
+	return baselessCylinderVertices;
+}
+
+std::vector<GLuint> Procedurals::drawBaselessCylinderIndices(GLuint startingIndex, unsigned int accuracy)
+{
+	std::vector<GLuint> baselessCylinderIndices = {};
+
+	for (unsigned int i = 0; i < accuracy - 1; ++i) {
+		baselessCylinderIndices.push_back(startingIndex + i);
+		baselessCylinderIndices.push_back(startingIndex + i + 1);
+		baselessCylinderIndices.push_back(startingIndex + accuracy + 1 + i);
+
+		baselessCylinderIndices.push_back(startingIndex + i);
+		baselessCylinderIndices.push_back(startingIndex + accuracy + i);
+		baselessCylinderIndices.push_back(startingIndex + accuracy + 1 + i);
+	}
+
+	baselessCylinderIndices.push_back(startingIndex + accuracy - 1);
+	baselessCylinderIndices.push_back(startingIndex);
+	baselessCylinderIndices.push_back(startingIndex + 2 * accuracy - 1);
+
+	baselessCylinderIndices.push_back(startingIndex);
+	baselessCylinderIndices.push_back(startingIndex + 2 * accuracy - 1);
+	baselessCylinderIndices.push_back(startingIndex + accuracy);
+
+	return baselessCylinderIndices;
+}
+
 
