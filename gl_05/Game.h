@@ -79,6 +79,8 @@ class Game {
 
     // Light (for now used as directional light)
     glm::vec3 _lightPos;
+	GLfloat light = 0.5;
+	GLfloat ambient = 0.5;
 
     void initGLFW();
     void initWindow(const char *title, bool resizable);

@@ -109,6 +109,16 @@ void Game::updateKeyInput(const float &dt) {
     if (glfwGetKey(_window, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS) {
         _camera.move(dt, DOWN);
     }
+
+	//Light
+	if (glfwGetKey(_window, GLFW_KEY_2) == GLFW_PRESS) {
+		light +=0.01f;
+		ambient += 0.01f;
+	}
+	if (glfwGetKey(_window, GLFW_KEY_1) == GLFW_PRESS) {
+		light -= 0.01f;
+		ambient -= 0.01f;
+	}
 }
 
 void Game::updateMouseInput() {
@@ -183,14 +193,17 @@ void Game::updateUniforms() {
     _shaders[MODELS]->setMat4fv(_ViewMatrix, "ViewMatrix");
     _shaders[MODELS]->setVec3f(_camera.getPosition(), "cameraPos");
     //light related, for_now_there, these should be attributes of Material or Light classes
-    _shaders[MODELS]->setVec3f(_lightPos, "light.position");
+    /*_shaders[MODELS]->setVec3f(_lightPos, "light.position");
     _shaders[MODELS]->setVec3f(glm::vec3(1.0f), "light.ambient");
     _shaders[MODELS]->setVec3f(glm::vec3(0.5f), "light.diffuse");
     _shaders[MODELS]->setVec3f(glm::vec3(1.0f), "light.specular");
     _shaders[MODELS]->set1f(32.f, "light.shininess");
     _shaders[MODELS]->set1f(1.0f, "light.constant");
     _shaders[MODELS]->set1f(0.027f, "light.linear");
-    _shaders[MODELS]->set1f(0.0028f, "light.quadratic");
+    _shaders[MODELS]->set1f(0.0028f, "light.quadratic");*/
+	_shaders[MODELS]->setVec3f(glm::vec3(10.f, 13.f, 4.f), "light.lightDir");
+	_shaders[MODELS]->set1f(light, "light.light");
+	_shaders[MODELS]->set1f(ambient, "light.ambient");
     //end for_now_there
     //Update framebuffer size and projection matrix (usefull when resizing window)
     glfwGetFramebufferSize(_window, &_frameBuffWidth, &_frameBuffHeight);

@@ -15,7 +15,12 @@ class Procedurals {
     static std::vector<Vertex> drawRectangleVertices(float positionX, float positionY, float positionZ, float width, float length);
     static std::vector<GLuint> drawRectangleIndices(GLuint startingIndex);
     static std::vector<Vertex> drawCylinderVertices(float positionX, float positionY, float positionZ, float height, float radius, float baseRatio, unsigned int accuracy);
-    static std::vector<GLuint> drawCylinderIndices(GLuint startingIndex, unsigned int accuracy);
+	static std::vector<Vertex> drawSpotlightVertices(float positionX, float positionY, float positionZ, float height,
+	                                          float radius,
+	                                          float baseRatio, unsigned accuracy);
+	static std::vector<Vertex> drawSpotlightBorderVertices(float positionX, float positionY, float positionZ, float height,
+	                                                float radius, float baseRatio, unsigned accuracy);
+	static std::vector<GLuint> drawCylinderIndices(GLuint startingIndex, unsigned int accuracy);
 	static std::vector<Vertex> drawSlouchedCuboidVertices(float positionX, float positionY, float positionZ, float width, float height, float length);
 	static std::vector<Vertex> drawTriangularPrismVertices(float positionX, float positionY, float positionZ, float width, float height, float length);
 	static std::vector<GLuint> drawTriangularPrismIndices(GLuint startingIndex);

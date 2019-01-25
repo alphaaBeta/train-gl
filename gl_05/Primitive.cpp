@@ -25,6 +25,9 @@ void Primitive::initVAO() {
     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid *)offsetof(Vertex, color));
     glEnableVertexAttribArray(1);
 
+	glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid *)offsetof(Vertex, normal));
+	glEnableVertexAttribArray(2);
+
     //BIND VAO 0
     glBindVertexArray(0);
 }
