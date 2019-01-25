@@ -13,6 +13,27 @@
 #include "Texture.h"
 #include "Camera.h"
 #include "Primitive.h"
+#include "Group.h"
+#include "Cabin.h"
+#include "Boiler.h"
+#include "Chimney.h"
+#include "Skybox.h"
+#include "BlackBox.h"
+#include "Spotlight.h"
+#include "chassisBox.h"
+#include "FrontBuffer.h"
+#include "SideBuffer.h"
+#include "Bumpers.h"
+#include "Piston.h"
+#include "Wheel.h"
+#include "WheelBox.h"
+#include "WheelConnectors.h"
+#include "Ground.h"
+#include "Tracks.h"
+
+#define PI 3.14159265359
+
+enum {LIGHT = 0, MODELS};
 
 class Group;
 
@@ -49,14 +70,17 @@ class Game {
     glm::mat4 _ProjMatrix;
 
     // Shaders
-    ShaderProgram *_shader;
+    std::vector<ShaderProgram *> _shaders;
 
     // TODO:Textures
 
     // Models
     std::vector<Model *> _objects;
 
-    // TODO: Lights
+    // Light (for now used as directional light)
+    glm::vec3 _lightPos;
+	GLfloat light = 0.5;
+	GLfloat ambient = 0.5;
 
     void initGLFW();
     void initWindow(const char *title, bool resizable);
@@ -66,8 +90,14 @@ class Game {
     void initShaders();
     //void initTextures();
     void initModels(Group &root);
-    //void initLights();
+	void initHighPistons(Group &higherPistons);
+	void initWheels(Group &rightFrontWheel, Group &leftFrontWheel, Group &rightMiddleFirstWheel, Group &leftMiddleFirstWheel, Group &rightMiddleSecondWheel, Group &leftMiddleSecondWheel, Group &rightBackWheel, Group &leftBackWheel);
+	void initWheelConnectors(Group &wheelConnectors);
+	void initGround(Group &ground);
+	void initLights();
     void initUniforms();
+
+	float wheelConnectorDegree = 0.f;
 
   public:
     Game(const char *title, const int width, const int height, bool resizable);

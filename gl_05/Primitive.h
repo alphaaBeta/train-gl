@@ -1,7 +1,7 @@
 #pragma once
 
 #include <vector>
-
+#define GLEW_STATIC
 #include <GL/glew.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -10,22 +10,23 @@
 #include "ShaderProgram.h"
 #include "Model.h"
 
-class Primitive : public Model{
+class Primitive : public Model {
   private:
-    std::vector<Vertex> _vertices;
-    std::vector<GLuint> _indices;
-
     GLuint _vao;
     GLuint _vbo;
     GLuint _ebo;
 
-    void initVAO();
   public:
+    std::vector<Vertex> _vertices;
+    std::vector<GLuint> _indices;
+
     Primitive(std::vector<Vertex> &vertices,
-         const std::vector<GLuint> &indices);
-	Primitive();
+              const std::vector<GLuint> &indices);
+    Primitive();
     ~Primitive();
 
     void draw();
+
+    void initVAO();
 };
 

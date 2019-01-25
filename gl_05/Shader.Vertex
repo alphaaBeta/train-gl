@@ -2,18 +2,25 @@
 
 layout (location = 0) in vec3 vertex_position;
 layout (location = 1) in vec3 vertex_color;
-
-out vec3 vs_position;
-out vec3 vs_color;
+layout (location = 2) in vec3 vertex_normal;
 
 uniform mat4 ModelMatrix;
 uniform mat4 ViewMatrix;
-uniform mat4 ProjectionMatrix;
+uniform mat4 ProjMatrix;
+
+out vec3 vs_position;
+out vec3 vs_color;
+out vec3 vs_normal;
+out vec4 viewSpace;
+
 
 void main()
 {
-	vs_position = vec4(ModelMatrix * vec4(vertex_position, 1.f)).xyz;
+	vs_position = vec3(ModelMatrix * vec4(vertex_position, 1.f));
+	vs_normal = mat3(transpose(inverse(ModelMatrix))) * vertex_normal;
 	vs_color = vertex_color;
 
-	gl_Position = ProjectionMatrix * ViewMatrix * ModelMatrix * vec4(vertex_position, 1.f);
+	viewSpace = ViewMatrix * ModelMatrix * vec4(vertex_position, 1.f);
+	gl_Position = ProjMatrix * viewSpace;
+
 }

@@ -86,17 +86,36 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BlackBox.cpp" />
+    <ClCompile Include="Boiler.cpp" />
+    <ClCompile Include="Bumpers.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="chassisBox.cpp" />
+    <ClCompile Include="Chimney.cpp" />
     <ClCompile Include="Config.cpp" />
+    <ClCompile Include="FrontBuffer.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Circle.cpp" />
+    <ClCompile Include="Cabin.cpp" />
+    <ClCompile Include="Ground.cpp" />
+    <ClCompile Include="Piston.cpp" />
+    <ClCompile Include="SideBuffer.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Group.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="Primitive.cpp" />
+    <ClCompile Include="Procedurals.cpp" />
     <ClCompile Include="ShaderProgram.cpp" />
+    <ClCompile Include="Skybox.cpp" />
+    <ClCompile Include="Spotlight.cpp" />
+    <ClCompile Include="Tracks.cpp" />
+    <ClCompile Include="Wheel.cpp" />
+    <ClCompile Include="WheelBox.cpp" />
+    <ClCompile Include="WheelConnectors.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Light.Fragment" />
+    <None Include="Light.Vertex" />
     <None Include="Shader.Fragment" />
     <None Include="Shader.Vertex" />
   </ItemGroup>
@@ -105,16 +124,33 @@
     <Image Include="weiti.png" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BlackBox.h" />
+    <ClInclude Include="Boiler.h" />
+    <ClInclude Include="Bumpers.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="chassisBox.h" />
+    <ClInclude Include="Chimney.h" />
     <ClInclude Include="Config.h" />
+    <ClInclude Include="FrontBuffer.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Ground.h" />
     <ClInclude Include="Group.h" />
     <ClInclude Include="Circle.h" />
+    <ClInclude Include="Cabin.h" />
+    <ClInclude Include="Piston.h" />
+    <ClInclude Include="SideBuffer.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="Primitive.h" />
+    <ClInclude Include="Procedurals.h" />
     <ClInclude Include="ShaderProgram.h" />
+    <ClInclude Include="Skybox.h" />
+    <ClInclude Include="Spotlight.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="Tracks.h" />
     <ClInclude Include="Vertex.h" />
+    <ClInclude Include="Wheel.h" />
+    <ClInclude Include="WheelBox.h" />
+    <ClInclude Include="WheelConnectors.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
