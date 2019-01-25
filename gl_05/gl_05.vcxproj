@@ -97,6 +97,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Circle.cpp" />
     <ClCompile Include="Cabin.cpp" />
+    <ClCompile Include="Ground.cpp" />
     <ClCompile Include="Piston.cpp" />
     <ClCompile Include="SideBuffer.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -107,6 +108,7 @@
     <ClCompile Include="ShaderProgram.cpp" />
     <ClCompile Include="Skybox.cpp" />
     <ClCompile Include="Spotlight.cpp" />
+    <ClCompile Include="Tracks.cpp" />
     <ClCompile Include="Wheel.cpp" />
     <ClCompile Include="WheelBox.cpp" />
     <ClCompile Include="WheelConnectors.cpp" />
@@ -131,6 +133,7 @@
     <ClInclude Include="Config.h" />
     <ClInclude Include="FrontBuffer.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Ground.h" />
     <ClInclude Include="Group.h" />
     <ClInclude Include="Circle.h" />
     <ClInclude Include="Cabin.h" />
@@ -143,6 +146,7 @@
     <ClInclude Include="Skybox.h" />
     <ClInclude Include="Spotlight.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="Tracks.h" />
     <ClInclude Include="Vertex.h" />
     <ClInclude Include="Wheel.h" />
     <ClInclude Include="WheelBox.h" />

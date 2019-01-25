@@ -25,6 +25,8 @@
     <ClCompile Include="Wheel.cpp" />
     <ClCompile Include="WheelBox.cpp" />
     <ClCompile Include="WheelConnectors.cpp" />
+    <ClCompile Include="Ground.cpp" />
+    <ClCompile Include="Tracks.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BlackBox.h" />
@@ -52,6 +54,8 @@
     <ClInclude Include="Wheel.h" />
     <ClInclude Include="WheelBox.h" />
     <ClInclude Include="WheelConnectors.h" />
+    <ClInclude Include="Ground.h" />
+    <ClInclude Include="Tracks.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="iipw.png" />

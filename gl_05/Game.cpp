@@ -35,6 +35,8 @@ Game::Game(const char *title, const int width, const int height, bool resizable 
 
 	Group *wheelConnectors = new Group();
 
+	Group *ground = new Group();
+
 
     _objects.push_back(workspace);
 	_objects.push_back(higherPistons);
@@ -47,6 +49,7 @@ Game::Game(const char *title, const int width, const int height, bool resizable 
 	_objects.push_back(rightBackWheel);
 	_objects.push_back(leftBackWheel);
 	_objects.push_back(wheelConnectors);
+	_objects.push_back(ground);
 
     initGLFW();
     initWindow(title, resizable);
@@ -63,9 +66,9 @@ Game::Game(const char *title, const int width, const int height, bool resizable 
 	initHighPistons(*higherPistons);
 	initWheels(*rightFrontWheel, *leftFrontWheel, *rightMiddleFirstWheel, *leftMiddleFirstWheel, *rightMiddleSecondWheel, *leftMiddleSecondWheel, *rightBackWheel, *leftBackWheel);
 	initWheelConnectors(*wheelConnectors);
+	initGround(*ground);
     //initLights();
     initUniforms();
-
 }
 
 Game::~Game() {
@@ -133,11 +136,13 @@ int Game::getWindowShouldClose() {
 void Game::update(const float &dt) {
     glfwPollEvents();
 
-	_objects[1]->setPos(glm::vec3(0.f));
+	_objects[1]->setPos(glm::vec3(0.5f));
 	_objects[1]->move(glm::vec3(1.5f * sin(wheelConnectorDegree * PI / 180.f), -1.5f * cos(wheelConnectorDegree * PI / 180.f), 0.f));
-	_objects[10]->setPos(glm::vec3(0.f));
+	_objects[10]->setPos(glm::vec3(0.5f));
 	_objects[10]->move(glm::vec3(1.5f * sin(wheelConnectorDegree * PI / 180.f), -1.5f * cos(wheelConnectorDegree * PI / 180.f), 0.f));
 	wheelConnectorDegree += 0.80f;
+
+	_objects[11]->move(glm::vec3(0.03f, 0.f, 0.f));
 
     updateKeyInput(dt);
     updateMouseInput();
@@ -265,7 +270,6 @@ void Game::initShaders() {
 }
 
 void Game::initModels(Group &root) {
-	root.addModel(*(new Skybox));
     root.addModel(*(new Cabin()));
     root.addModel(*(new Boiler()));
 	Chimney *chimney = new Chimney();
@@ -292,26 +296,30 @@ void Game::initModels(Group &root) {
 	rightBuffer->rotate(glm::vec3(-90.f, 0.f, 90.f));
 	root.addModel(*rightBuffer);
 	root.addModel(*(new Bumpers()));
+
+	root.move(glm::vec3(0.f, 0.5f, 0.f));
 }
 
 void Game::initHighPistons(Group &higherPistons) {
 	Piston *firstPiston = new Piston();
-	firstPiston->move(glm::vec3(9.9f, 1.8f, 0.8f));
-	firstPiston->setOrigin(glm::vec3(9.9f, 1.8f, 0.8f));
+	firstPiston->move(glm::vec3(9.4f, 1.8f, 0.2f));
+	firstPiston->setOrigin(glm::vec3(9.4f, 1.8f, 0.2f));
 	Piston *secondPiston = new Piston();
-	secondPiston->move(glm::vec3(21.9f, 1.8f, 0.8f));
-	secondPiston->setOrigin(glm::vec3(21.9f, 1.8f, 0.8f));
+	secondPiston->move(glm::vec3(21.4f, 1.8f, 0.2f));
+	secondPiston->setOrigin(glm::vec3(21.4f, 1.8f, 0.2f));
 	Piston *thirdPiston = new Piston();
-	thirdPiston->move(glm::vec3(9.9f, 1.8f, 12.8f));
-	thirdPiston->setOrigin(glm::vec3(9.9f, 1.8f, 12.8f));
+	thirdPiston->move(glm::vec3(9.4f, 1.8f, 12.5f));
+	thirdPiston->setOrigin(glm::vec3(9.4f, 1.8f, 12.5f));
 	Piston *fourthPiston = new Piston();
-	fourthPiston->move(glm::vec3(21.9f, 1.8f, 12.8f));
-	fourthPiston->setOrigin(glm::vec3(21.9f, 1.8f, 12.8f));
+	fourthPiston->move(glm::vec3(21.4f, 1.8f, 12.5f));
+	fourthPiston->setOrigin(glm::vec3(21.4f, 1.8f, 12.5f));
 
 	higherPistons.addModel(*firstPiston);
 	higherPistons.addModel(*secondPiston);
 	higherPistons.addModel(*thirdPiston);
 	higherPistons.addModel(*fourthPiston);
+
+	higherPistons.move(glm::vec3(0.f, 0.5f, 0.f));
 }
 
 void Game::initWheels(Group &rightFrontWheel, Group &leftFrontWheel, Group &rightMiddleFirstWheel, Group &leftMiddleFirstWheel, Group &rightMiddleSecondWheel, Group &leftMiddleSecondWheel, Group &rightBackWheel, Group &leftBackWheel) {
@@ -363,10 +371,19 @@ void Game::initWheels(Group &rightFrontWheel, Group &leftFrontWheel, Group &righ
 	rightFrontWheel.addModel(*leftMiddleFirstWheelModel);
 	rightFrontWheel.addModel(*leftMiddleSecondWheelModel);
 	rightFrontWheel.addModel(*leftBackWheelModel);
+
+	rightFrontWheel.move(glm::vec3(0.f, 0.5f, 0.f));
 }
 
-void Game::initWheelConnectors(Group & wheelConnectors){
+void Game::initWheelConnectors(Group & wheelConnectors) {
 	wheelConnectors.addModel(*(new WheelConnectors()));
+	wheelConnectors.move(glm::vec3(0.f, 0.5f, 0.f));
+}
+
+void Game::initGround(Group & ground) {
+	ground.addModel(*(new Skybox));
+	ground.addModel(*(new Ground()));
+	ground.addModel(*(new Tracks()));
 }
 
 void Game::initLights() {

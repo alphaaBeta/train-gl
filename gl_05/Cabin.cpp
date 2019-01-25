@@ -8,7 +8,7 @@ Cabin::Cabin()
 
 	std::vector<Vertex> *cabinVertices = new std::vector<Vertex>();
 
-	tempVertices = Procedurals::drawRectangleVertices(19.f, 23.f, 0.5f, 14.f, 13.f);
+	tempVertices = Procedurals::drawCuboidVertices(19.f, 23.f, 0.5f, 14.f, 0.2f, 13.f);
 	cabinVertices->insert(cabinVertices->end(), tempVertices.begin(), tempVertices.end());
 
 	tempVertices = Procedurals::drawCuboidVertices(31.f, 7.f, 1.5f, 1.f, 16.f, 11.f);
@@ -64,7 +64,7 @@ Cabin::Cabin()
 	tempIndices = Procedurals::drawRectangleIndices(0);
 	cabinIndices->insert(cabinIndices->end(), tempIndices.begin(), tempIndices.end());
 
-	for (GLuint i = 4; i <= 364; i = i + 24) {
+	for (GLuint i = 0; i <= 380; i = i + 24) {
 		tempIndices = Procedurals::drawCuboidIndices(i);
 		cabinIndices->insert(cabinIndices->end(), tempIndices.begin(), tempIndices.end());
 	}

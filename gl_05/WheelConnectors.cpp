@@ -6,7 +6,7 @@ WheelConnectors::WheelConnectors() {
 	std::vector<Vertex> *wheelConnectorsVertices = new std::vector<Vertex>();
 	std::vector<Vertex> tempVertices;
 
-	*wheelConnectorsVertices = Procedurals::drawCuboidVertices(8.f, 2.f, 0.8f, 16.f, 0.5f, 0.4f);
+	*wheelConnectorsVertices = Procedurals::drawCuboidVertices(8.f, 2.f, -0.1f, 16.f, 0.5f, 0.4f);
 	tempVertices = Procedurals::drawCuboidVertices(8.f, 2.f, 12.8f, 16.f, 0.5f, 0.4f);
 	wheelConnectorsVertices->insert(wheelConnectorsVertices->end(), tempVertices.begin(), tempVertices.end());
 

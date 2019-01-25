@@ -62,10 +62,10 @@ std::vector<GLuint> Procedurals::drawCuboidIndices(GLuint startingIndex) {
 
 std::vector<Vertex> Procedurals::drawRectangleVertices(float positionX, float positionY, float positionZ, float width, float length) {
 	std::vector<Vertex> rectangleVertices = {
-		{glm::vec3(positionX, positionY, positionZ),							glm::vec3(1.f, 0.f, 0.f),			glm::vec3(0.f, 1.f, 0.f)},
-		{glm::vec3(positionX, positionY, positionZ + length),					glm::vec3(1.f, 0.f, 0.f),			glm::vec3(0.f, 1.f, 0.f)},
-		{glm::vec3(positionX + width, positionY, positionZ),					glm::vec3(1.f, 0.f, 0.f),			glm::vec3(0.f, 1.f, 0.f)},
-		{glm::vec3(positionX + width, positionY, positionZ + length),			glm::vec3(1.f, 0.f, 0.f),			glm::vec3(0.f, 1.f, 0.f)}
+		{glm::vec3(positionX, positionY, positionZ),							glm::vec3(0.21f, 0.43f, 0.36f),			glm::vec3(0.f, 1.f, 0.f)},
+		{glm::vec3(positionX, positionY, positionZ + length),					glm::vec3(0.21f, 0.43f, 0.36f),			glm::vec3(0.f, 1.f, 0.f)},
+		{glm::vec3(positionX + width, positionY, positionZ),					glm::vec3(0.21f, 0.43f, 0.36f),			glm::vec3(0.f, 1.f, 0.f)},
+		{glm::vec3(positionX + width, positionY, positionZ + length),			glm::vec3(0.21f, 0.43f, 0.36f),			glm::vec3(0.f, 1.f, 0.f)}
 	};
 
 	return rectangleVertices;

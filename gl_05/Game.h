@@ -28,6 +28,8 @@
 #include "Wheel.h"
 #include "WheelBox.h"
 #include "WheelConnectors.h"
+#include "Ground.h"
+#include "Tracks.h"
 
 #define PI 3.14159265359
 
@@ -89,6 +91,7 @@ class Game {
 	void initHighPistons(Group &higherPistons);
 	void initWheels(Group &rightFrontWheel, Group &leftFrontWheel, Group &rightMiddleFirstWheel, Group &leftMiddleFirstWheel, Group &rightMiddleSecondWheel, Group &leftMiddleSecondWheel, Group &rightBackWheel, Group &leftBackWheel);
 	void initWheelConnectors(Group &wheelConnectors);
+	void initGround(Group &ground);
 	void initLights();
     void initUniforms();
 
