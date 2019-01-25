@@ -143,6 +143,10 @@ void Game::update(const float &dt) {
 	wheelConnectorDegree += 0.80f;
 
 	_objects[11]->move(glm::vec3(0.03f, 0.f, 0.f));
+	if (_objects[11]->_pos.x >= 3.f)
+	{
+		_objects[11]->move(glm::vec3(-3.f, 0.f, 0.f));
+	}
 
     updateKeyInput(dt);
     updateMouseInput();
@@ -381,7 +385,7 @@ void Game::initWheelConnectors(Group & wheelConnectors) {
 }
 
 void Game::initGround(Group & ground) {
-	ground.addModel(*(new Skybox));
+	//ground.addModel(*(new Skybox));
 	ground.addModel(*(new Ground()));
 	ground.addModel(*(new Tracks()));
 }

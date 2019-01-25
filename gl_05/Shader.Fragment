@@ -45,8 +45,8 @@ void main()
 	float spec = pow(max(dot(cameraPos, reflectDir), 0.f), light.shininess);
 	vec3 specular = light.specular * spec * vs_color.rgb;
 
-	float distance = length(light.position - vs_position) * 2;
-    float attenuation = 1.0 / (light.constant + light.linear * distance + light.quadratic * (distance * distance));
+	float distance = length(light.position - vs_position);
+    float attenuation = 2.0 / (light.constant + light.linear * distance + light.quadratic * (distance * distance));
 
 	ambient  *= attenuation;  
     diffuse   *= attenuation;
