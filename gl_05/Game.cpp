@@ -119,6 +119,26 @@ void Game::updateKeyInput(const float &dt) {
 		light -= 0.01f;
 		ambient -= 0.01f;
 	}
+
+	//Fog
+	if (glfwGetKey(_window, GLFW_KEY_4) == GLFW_PRESS) {
+		FogDensity += 0.0001f;
+	}
+	if (glfwGetKey(_window, GLFW_KEY_3) == GLFW_PRESS) {
+		FogDensity -= 0.0001f;
+	}
+	if (glfwGetKey(_window, GLFW_KEY_5) == GLFW_PRESS) {
+		depthSelector -= 1;
+	}
+	if (glfwGetKey(_window, GLFW_KEY_6) == GLFW_PRESS) {
+		depthSelector += 1;
+	}
+	if (glfwGetKey(_window, GLFW_KEY_7) == GLFW_PRESS) {
+		fogSelector -= 1;
+	}
+	if (glfwGetKey(_window, GLFW_KEY_8) == GLFW_PRESS) {
+		fogSelector += 1;
+	}
 }
 
 void Game::updateMouseInput() {
@@ -193,17 +213,12 @@ void Game::updateUniforms() {
     _shaders[MODELS]->setMat4fv(_ViewMatrix, "ViewMatrix");
     _shaders[MODELS]->setVec3f(_camera.getPosition(), "cameraPos");
     //light related, for_now_there, these should be attributes of Material or Light classes
-    /*_shaders[MODELS]->setVec3f(_lightPos, "light.position");
-    _shaders[MODELS]->setVec3f(glm::vec3(1.0f), "light.ambient");
-    _shaders[MODELS]->setVec3f(glm::vec3(0.5f), "light.diffuse");
-    _shaders[MODELS]->setVec3f(glm::vec3(1.0f), "light.specular");
-    _shaders[MODELS]->set1f(32.f, "light.shininess");
-    _shaders[MODELS]->set1f(1.0f, "light.constant");
-    _shaders[MODELS]->set1f(0.027f, "light.linear");
-    _shaders[MODELS]->set1f(0.0028f, "light.quadratic");*/
 	_shaders[MODELS]->setVec3f(glm::vec3(10.f, 13.f, 4.f), "light.lightDir");
 	_shaders[MODELS]->set1f(light, "light.light");
 	_shaders[MODELS]->set1f(ambient, "light.ambient");
+	_shaders[MODELS]->set1f(FogDensity, "FogDensity");
+	_shaders[MODELS]->set1i(fogSelector, "fogSelector");
+	_shaders[MODELS]->set1i(depthSelector, "depthFog");
     //end for_now_there
     //Update framebuffer size and projection matrix (usefull when resizing window)
     glfwGetFramebufferSize(_window, &_frameBuffWidth, &_frameBuffHeight);

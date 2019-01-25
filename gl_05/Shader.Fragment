@@ -1,16 +1,6 @@
 #version 330 core
 
 struct Light {
-    //vec3 position;  
-  
-    //vec3 ambient;
-    //vec3 diffuse;
-    //vec3 specular;
-
-	//float shininess;
-    //float constant;
-    //float linear;
-    //float quadratic;
 	vec3 lightDir;
 	float light;
 	float ambient;
@@ -30,32 +20,17 @@ uniform Light light;
 uniform int fogSelector;
 //0 plane based; 1 range based
 uniform int depthFog;
+uniform float FogDensity;
 
 const vec3 fogColor = vec3(0.70588f, 0.87451f, 0.97647f);
-const float FogDensity = 0.05;
 
 void main()
 {
-	//vec3 ambient = light.ambient * vs_color.rgb;
 
 	vec3 norm = normalize(vs_normal);
-	/*vec3 lightDir = normalize(light.position - vs_position);
-	float diff = max(dot(norm, lightDir), 0.f);
-	vec3 diffuse = light.diffuse * diff * vs_color.rgb;
+	//vec3 color = vec3(0.f, 1.f, 0.f);
 
-	vec3 viewDir = normalize(cameraPos - vs_position);
-	vec3 reflectDir = reflect(-lightDir, norm);
-	float spec = pow(max(dot(cameraPos, reflectDir), 0.f), light.shininess);
-	vec3 specular = light.specular * spec * vs_color.rgb;
-
-	float distance = length(light.position - vs_position);
-    float attenuation = 2.0 / (light.constant + light.linear * distance + light.quadratic * (distance * distance));
-
-	ambient  *= attenuation;  
-    diffuse   *= attenuation;
-    specular *= attenuation;*/
-
-	vec3 lightColor = vs_color * (max(dot(normalize(vs_normal),normalize(light.lightDir)), 0.0)*light.light + light.ambient);//ambient + diffuse + specular;
+	vec3 lightColor = (vs_color) * (max(dot(normalize(vs_normal),normalize(light.lightDir)), 0.0)*light.light + light.ambient);
 	//vec3 lightColor = normalize(vs_normal);
 	vec3 result = vec3(0, 0, 0);
 
@@ -107,5 +82,4 @@ void main()
 	
 
 	fs_color = vec4(result, 1.f);
-	//    fs_color = vec4(1.0);
 }

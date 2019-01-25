@@ -1,20 +1,29 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(391,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (gl_05.vcxproj).  This can lead to incorrect clean and rebuild behavior.
   BlackBox.cpp
+  Boiler.cpp
   Bumpers.cpp
   Cabin.cpp
+c:\_git\studia\gl_05\game.h(86): warning C4305: 'initializing': truncation from 'double' to 'GLfloat'
   Chimney.cpp
+  Circle.cpp
   FrontBuffer.cpp
   Game.cpp
+c:\_git\studia\gl_05\game.h(86): warning C4305: 'initializing': truncation from 'double' to 'GLfloat'
   Ground.cpp
+  Group.cpp
   Main.cpp
+c:\_git\studia\gl_05\game.h(86): warning C4305: 'initializing': truncation from 'double' to 'GLfloat'
+  Model.cpp
   Piston.cpp
-  Procedurals.cpp
+  Primitive.cpp
   SideBuffer.cpp
   Skybox.cpp
   Spotlight.cpp
   Tracks.cpp
   Wheel.cpp
   WheelBox.cpp
+  Generating Code...
+  Compiling...
   WheelConnectors.cpp
   chassisBox.cpp
   Generating Code...

@@ -82,6 +82,11 @@ class Game {
 	GLfloat light = 0.5;
 	GLfloat ambient = 0.5;
 
+	//Fog
+	GLfloat FogDensity = 0.05;
+	GLint depthSelector = 1;
+	GLint fogSelector = 2;
+
     void initGLFW();
     void initWindow(const char *title, bool resizable);
     void initGLEW();

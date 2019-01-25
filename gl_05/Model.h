@@ -20,7 +20,6 @@ public:
 
 	virtual void draw() {};
 
-
 	void render();
 
 	void updateModelMatrix();
